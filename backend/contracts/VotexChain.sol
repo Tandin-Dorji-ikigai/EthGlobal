@@ -56,8 +56,8 @@ contract VotexChain {
         address[] memory _candidates
     ) public onlyAdmin {
         require(_startTime < _endTime, "Start time must be before end time");
-
-        Election storage newElection = elections[electionCount++];
+        electionCount++;
+        Election storage newElection = elections[electionCount];
         newElection.name = _name;
         newElection.startTime = _startTime;
         newElection.endTime = _endTime;
@@ -80,19 +80,11 @@ contract VotexChain {
         Election storage election = elections[electionId];
 
         require(!election.hasVoted[msg.sender], "You have already voted");
-
-        // Check if candidate exists
-        bool validCandidate = false;
-        for (uint i = 0; i < election.candidates.length; i++) {
-            if (
-                keccak256(abi.encodePacked(election.candidates[i])) ==
-                keccak256(abi.encodePacked(candidate))
-            ) {
-                validCandidate = true;
-                break;
-            }
-        }
-        require(validCandidate, "Invalid candidate");
+        require(checkElectionEnded(electionId), "Voting has ended");
+        require(
+            checkValidCandidate(electionId, candidate),
+            "Invalid candidate"
+        );
 
         election.votes[candidate]++;
         election.hasVoted[msg.sender] = true;
@@ -108,12 +100,27 @@ contract VotexChain {
         emit ElectionEnded(electionId);
     }
 
-    function checkElectionEnded(uint256 electionId) public {
-        Election storage election = elections[electionId];
-        if (block.timestamp > election.endTime) {
-            election.active = false;
-            emit ElectionEnded(electionId);
+    // Check if candidate exists
+    function checkValidCandidate(
+        uint256 electionId,
+        address candidate
+    ) public view returns (bool) {
+        bool validCandidate = false;
+        for (uint256 i = 0; i < elections[electionId].candidates.length; i++) {
+            if (
+                keccak256(
+                    abi.encodePacked(elections[electionId].candidates[i])
+                ) == keccak256(abi.encodePacked(candidate))
+            ) {
+                validCandidate = true;
+                break;
+            }
         }
+        return validCandidate;
+    }
+
+    function checkElectionEnded(uint256 electionId) public view returns (bool) {
+        return elections[electionId].endTime > block.timestamp;
     }
 
     function getVotes(
@@ -121,21 +128,5 @@ contract VotexChain {
         address candidate
     ) public view returns (uint256) {
         return elections[electionId].votes[candidate];
-    }
-
-    function getElectionDetails(
-        uint256 electionId
-    )
-        public
-        view
-        returns (string memory, uint256, uint256, bool, address[] memory)
-    {
-        return (
-            elections[electionId].name,
-            elections[electionId].startTime,
-            elections[electionId].endTime,
-            elections[electionId].active,
-            elections[electionId].candidates
-        );
     }
 }

@@ -27,13 +27,11 @@ describe("VotexChain", function () {
       const endTime = startTime + 3600; // Ends in 1 hour
 
       await votexChain.connect(admin).createElection("Election 1", startTime, endTime, candidates);
-      const election = await votexChain.elections(0);
-      const electionDetails1 = await votexChain.connect(admin).getElectionDetails(0)
+      const election = await votexChain.elections(1); // Since electionCount starts at 1
       expect(election.name).to.equal("Election 1");
       expect(election.active).to.be.true;
       expect(election.startTime).to.equal(startTime);
       expect(election.endTime).to.equal(endTime);
-      expect(electionDetails1[4]).to.include.members(candidates);
     });
 
     it("Should revert if non-admin tries to create an election", async function () {
@@ -65,9 +63,9 @@ describe("VotexChain", function () {
 
       await time.increaseTo(startTime);
 
-      await votexChain.connect(voter1).vote(0, candidate1.address);
+      await votexChain.connect(voter1).vote(1, candidate1.address);
 
-      const votes = await votexChain.getVotes(0, candidate1.address);
+      const votes = await votexChain.getVotes(1, candidate1.address);
       expect(votes).to.equal(1);
     });
 
@@ -76,10 +74,10 @@ describe("VotexChain", function () {
 
       await time.increaseTo(startTime);
 
-      await votexChain.connect(voter1).vote(0, candidate1.address);
+      await votexChain.connect(voter1).vote(1, candidate1.address);
 
       await expect(
-        votexChain.connect(voter1).vote(0, candidate1.address)
+        votexChain.connect(voter1).vote(1, candidate1.address)
       ).to.be.revertedWith("You have already voted");
     });
 
@@ -89,7 +87,7 @@ describe("VotexChain", function () {
       await time.increaseTo(startTime);
 
       await expect(
-        votexChain.connect(voter1).vote(0, voter2.address)
+        votexChain.connect(voter1).vote(1, voter2.address)
       ).to.be.revertedWith("Invalid candidate");
     });
 
@@ -97,7 +95,7 @@ describe("VotexChain", function () {
       const { votexChain, voter1, candidate1, startTime } = await loadFixture(setupElectionFixture);
 
       await expect(
-        votexChain.connect(voter1).vote(0, candidate1.address)
+        votexChain.connect(voter1).vote(1, candidate1.address)
       ).to.be.revertedWith("Election has not started yet");
     });
 
@@ -107,7 +105,7 @@ describe("VotexChain", function () {
       await time.increaseTo(endTime + 1);
 
       await expect(
-        votexChain.connect(voter1).vote(0, candidate1.address)
+        votexChain.connect(voter1).vote(1, candidate1.address)
       ).to.be.revertedWith("Election has ended");
     });
 
@@ -116,9 +114,9 @@ describe("VotexChain", function () {
 
       await time.increaseTo(endTime);
 
-      await expect(votexChain.connect(admin).endElection(0))
+      await expect(votexChain.connect(admin).endElection(1))
         .to.emit(votexChain, "ElectionEnded")
-        .withArgs(0);
+        .withArgs(1);
     });
   });
 });
