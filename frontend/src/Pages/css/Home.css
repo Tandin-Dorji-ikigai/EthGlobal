@@ -1,0 +1,54 @@
+.features-wrapper{
+    background: #042435;
+    height: 70dvh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.features{
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.feature-topic{
+    font-size: clamp(28px,3vw,32px);
+    color: #EACCFF;
+    font-family: 'Microsport Bold';
+    font-weight: bolder;
+}
+
+.feature-box{
+    height: auto;
+    width: 100%;
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap; 
+    gap: 20px;
+}
+
+.feature-box .feature-card{
+    width: 375px;
+    height: 375px;
+    border: 1px solid red;
+}
+
+@media (max-width: 1200px) {
+    .features-wrapper{
+        height: auto;
+    }
+
+    .feature-box .feature-card {
+        width: 48%; 
+    }
+}
+
+@media (max-width: 768px) {
+    .feature-box .feature-card {
+        width: 100%; 
+    }
+}
