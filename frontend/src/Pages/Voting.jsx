@@ -1,15 +1,25 @@
 import React, { useState } from "react";
 import "./css/votingpoll.css";
 
+const allPolls = [
+  { id: 1, title: "Election 1", status: "Open" },
+  { id: 2, title: "Election 2", status: "Closed" },
+  { id: 3, title: "Election 3", status: "Open" },
+  { id: 4, title: "Election 4", status: "Closed" },
+  { id: 5, title: "Election 5", status: "Open" }
+];
+
 function Voting() {
-  // State to manage which button is active
   const [activeButton, setActiveButton] = useState("All");
 
-  // Function to handle button clicks and set active state
   const handleButtonClick = (buttonName) => {
-    console.log(buttonName)
     setActiveButton(buttonName);
   };
+
+  const filteredPolls = allPolls.filter(poll => {
+    if (activeButton === "All") return true;
+    return poll.status === activeButton;
+  });
 
   return (
     <div className="voting-poll-content">
@@ -39,74 +49,23 @@ function Voting() {
             Closed
           </button>
         </div>
-
       </div>
       <div className="election-poll-container">
-        <div className="poll-card-container">
-          <div className="poll-card">
-            <div className="poll-title">
-              Open Poll
+        {filteredPolls.length > 0 ? (
+          filteredPolls.map(poll => (
+            <div key={poll.id} className="poll-card-container">
+              <div className="poll-card">
+                <div className="poll-title">{poll.status} Poll</div>
+                <div className="poll-name">{poll.title}</div>
+                <button className="view-more-btn">
+                  View More
+                </button>
+              </div>
             </div>
-            <div className="poll-name">
-              Election 1
-            </div>
-            <button className="view-more-btn">
-              View More
-            </button>
-          </div>
-        </div>
-        <div className="poll-card-container">
-          <div className="poll-card">
-            <div className="poll-title">
-              Open Poll
-            </div>
-            <div className="poll-name">
-              Election 1
-            </div>
-            <button className="view-more-btn">
-              View More
-            </button>
-          </div>
-        </div>
-        <div className="poll-card-container">
-          <div className="poll-card">
-            <div className="poll-title">
-              Open Poll
-            </div>
-            <div className="poll-name">
-              Election 1
-            </div>
-            <button className="view-more-btn">
-              View More
-            </button>
-          </div>
-        </div>
-        <div className="poll-card-container">
-          <div className="poll-card">
-            <div className="poll-title">
-              Open Poll
-            </div>
-            <div className="poll-name">
-              Election 1
-            </div>
-            <button className="view-more-btn">
-              View More
-            </button>
-          </div>
-        </div>
-        <div className="poll-card-container">
-          <div className="poll-card">
-            <div className="poll-title">
-              Open Poll
-            </div>
-            <div className="poll-name">
-              Election 1
-            </div>
-            <button className="view-more-btn">
-              View More
-            </button>
-          </div>
-        </div>
+          ))
+        ) : (
+          <div>No polls available</div>
+        )}
       </div>
     </div>
   );
