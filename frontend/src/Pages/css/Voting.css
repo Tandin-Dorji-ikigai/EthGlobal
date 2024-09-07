@@ -1,17 +1,17 @@
 .voting-banner{
     background: #042435;
-    height: 70dvh;
+    height: 60dvh;
 }
 
 .voting-banner-content{
     width: 90%;
     margin: 0 auto;
-    border: 1px solid red;
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    padding: 200px 0;
+    padding: 100px 0;
+    gap: 10px;
 
 }
 
@@ -20,4 +20,160 @@
     font-size: clamp(14px,3vw,16px);
     font-family: 'Microsport Bold';
     font-weight: bolder;
+}
+
+.voting-banner-content :nth-child(2){
+    color: #FFFFFF;
+    font-size: clamp(44px,3vw,48px);
+    font-family: 'Microsport Bold';
+    font-weight: bolder;
+}
+
+.voting-banner-content :nth-child(3){
+    color: #FFFFFF;
+    font-size: clamp(14px,3vw,16px);
+    font-family: 'Inter';
+    font-weight: 500;
+}
+
+.voting-candidates{
+    height: auto;
+    background: linear-gradient(90deg, #001F30 5%, #001929 46%, #000912 100%);
+    padding: 5% 0;
+}
+
+.candi-topic{
+    color: #EACCFF;
+    font-size: clamp(28px,3vw,32px);
+    font-family: 'Microsport Bold';
+    width: 90%;
+    margin: 0 auto;
+}
+
+.candidate-wrapper{
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 50px;
+}
+
+.candidate-container{
+    height: 280px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    position: relative;
+}
+
+.candidate-container::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, #0C3A53 0%, #1C719E 52%, #0C3A53 100%);
+    border-radius: 10px;
+}
+
+.candidate-container::after{
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, #0C3A53 0%, #1C719E 52%, #0C3A53 100%);
+    border-radius: 10px;
+}
+
+
+.candidate-container  .candidate-content1{
+    flex: 1;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+}
+.candidate-container  .candidate-content2{
+    flex: 3;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.candidate-container  .candidate-content3{
+    flex: 1.5;
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.cand-img-container{
+    height: 150px;
+    width: 170px;
+}
+
+.cand-number{
+    font-size: clamp(36px,3vw,40px);
+    font-family: 'Microsport Bold';
+    color: #447694;
+
+}
+.cand-img-container img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.candidate-content2 :nth-child(1){
+    color: #3D637D;
+    font-family: "Inter";
+    font-size: clamp(12px,3vw,14px);
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+.candidate-content2 :nth-child(2){
+    color: #EACCFF;
+    font-family: "Inter";
+    font-size: clamp(16px,3vw,18px);
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+.candidate-content2 :nth-child(3){
+    color: #FFFFFF;
+    font-family: "Inter";
+    font-size: clamp(12px,3vw,14px);
+    font-weight: 500;
+    width: 100%;
+}
+
+.vote-btn{
+    width: 230px;
+    font-weight: bold;
+    font-family: "inter";
+    font-size: clamp(16px,3vw,20px);
+    color: #001F30;
+    background: #A2FDFD;
+    border: 1px solid #328989;
+    height: 60px;
+    border-radius: 100px;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.vote-btn:hover{
+    filter: brightness(0.8);
 }
