@@ -3,7 +3,6 @@ import { NavLink, Link } from "react-router-dom";
 import { IoClose, IoMenu } from "react-icons/io5";
 import "./Navbar.css";
 import Logo from "../Assets/logo.png"
-import Banner from "../Assets/banner.png"
 
 const Navbar = () => {
     const [showMenu, setShowMenu] = useState(false);
@@ -64,20 +63,6 @@ const Navbar = () => {
                     </div>
                 </nav>
             </header>
-
-            <div className="banner-wrapper">
-                <div className="overlay-banner"></div>
-                <img src={Banner} alt="" srcset="" />
-                <div className="banner-content">
-                    <p className="sup-text">Introducing Votexchain</p>
-                    <p className="main-text">Redefining Voting with blockhain security</p>
-                    <p className="sub-text">From identity verification to final tallying, experience transparent elections powered by the latest in decentralized technology.</p>
-
-                    <Link to="/register" className="nav__link nav__cta cta-banner">
-                        Register
-                    </Link>
-                </div>
-            </div>
         </>
     );
 };
