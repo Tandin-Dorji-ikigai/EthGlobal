@@ -1,4 +1,6 @@
-.features-wrapper{
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+.features-wrapper {
     background: #042435;
     height: 70dvh;
     display: flex;
@@ -6,7 +8,7 @@
     align-items: center;
 }
 
-.features{
+.features {
     width: 90%;
     display: flex;
     justify-content: center;
@@ -14,41 +16,230 @@
     flex-direction: column;
 }
 
-.feature-topic{
-    font-size: clamp(28px,3vw,32px);
+.feature-topic {
+    font-size: clamp(28px, 3vw, 32px);
     color: #EACCFF;
     font-family: 'Microsport Bold';
     font-weight: bolder;
 }
 
-.feature-box{
+.feature-box {
     height: auto;
     width: 100%;
     margin-top: 50px;
     display: flex;
     justify-content: space-between;
-    flex-wrap: wrap; 
-    gap: 20px;
+    flex-wrap: wrap;
 }
 
-.feature-box .feature-card{
-    width: 375px;
-    height: 375px;
-    border: 1px solid red;
+.feature-box .feature-card {
+    width: 450px;
+    height: 370px;
+    border: 1px solid #1C719E;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: #0C3A53;
+    gap: 30px;
+    transition: all 0.5s ease-in-out;
+    cursor: pointer;
+}
+
+.feature-box .feature-card:hover{
+    transform: scale(1.1);
+}
+
+.card-topic{
+    font-family: 'Inter';
+    font-size: clamp(20px,3vw,24px);
+    font-weight: bold;
+    color: #F5F5F5;
+    position: relative;
+    width: 90%;
+}
+
+.card-topic::after{
+    position: absolute;
+    content: "";
+    width: 100%;
+    background: linear-gradient(90deg, #0C3A53 0%, #1C719E 52%, #0C3A53 100%);
+    height: 2px;
+    left: 50%;
+    bottom: -25%;
+    transform: translateX(-50%);
+    border-radius: 10px;
+}
+
+.card-des{
+    width: 90%;
+    font-family: 'Inter';
+    font-size: clamp(14px,3vw,16px);
+    font-weight: medium;
+    color: #FFFFFF;
+    line-height: 1.4em;
+}
+
+
+/* Process */
+.process-wrapper {
+    background: #F1ECE4;
+    height: auto;
+    width: 100%;
+    background: linear-gradient(90deg, #001F30 5%, #001929 46%, #000912 79%);
+    font-family: "Inter";
+}
+
+.process-content-container {
+    height: 100%;
+    width: 90%;
+    margin: 0 auto;
+    padding: 50px 0;
+}
+
+.process-topic {
+    font-size: clamp(28px, 3vw, 32px);
+    font-weight: bolder;
+    font-family: 'Microsport Bold';
+    color: #EACCFF;
+}
+
+.steps-container{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.steps-container .steps-content{
+    height: 180px;
+    width: 100%;
+    position: relative;
+}
+
+.steps-content::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, #0C3A53 0%, #1C719E 52%, #0C3A53 100%);
+    border-radius: 10px;
+}
+
+.steps-content{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.steps-number{
+    color: #E2D6C1;
+    font-size: clamp(90px,3vw,100px);
+    font-weight: bolder;
+    font-family: 'Microsport Bold';
+    letter-spacing: 2px;
+}
+
+.steps-number, .steps-des-cont{
+    flex: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.steps-des-cont{
+    flex: 2;
+}
+
+.steps-des-topic,
+.steps-des-subdes{
+    text-align: start;
+}
+
+.steps-des-topic{
+    font-size: clamp(24px,3vw,28px);
+    font-weight: bold;
+}
+
+.steps-des-subdes{
+    font-size: clamp(16px,3vw,18px);
+    color: #FFFFFF;
+}
+
+/* USE CASE */
+
+.useCase-wrapper{
+    height: auto;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.useCase-content{
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 5%;
+    height: 360px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    background: linear-gradient(90deg, #3D8CB6 0%, #042435 65%);
+}
+
+.usecase-content-even{
+    background: linear-gradient(90deg, #042435 0%, #3D8CB6 65%);
+    align-items: flex-end;
+    text-align: end;
+
+}
+.useCaseMain-content{
+    width: 50%;
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.usecase-topic{
+    font-size: clamp(14px,3vw,16px);
+    font-weight: bolder;
+    font-family: 'Microsport Bold';
+    color: #EACCFF;
+    text-transform: uppercase;
+}
+
+.usecase-subTopic{
+    font-size: clamp(40px,3vw,48px);
+    font-weight: bolder;
+    font-family: 'Microsport Bold';
+    color: #FFFFFF;
+    text-transform: uppercase;
+}
+
+.usecase-content{
+    font-family: "inter";
+    font-size: clamp(14px,3vw,16px);
+    font-weight: 500;
+    color: #FFFFFF;
 }
 
 @media (max-width: 1200px) {
-    .features-wrapper{
+    .features-wrapper {
         height: auto;
     }
 
     .feature-box .feature-card {
-        width: 48%; 
+        width: 48%;
     }
 }
 
 @media (max-width: 768px) {
     .feature-box .feature-card {
-        width: 100%; 
+        width: 100%;
     }
 }

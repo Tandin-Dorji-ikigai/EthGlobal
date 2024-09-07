@@ -4,23 +4,6 @@
     margin: 0;
 }
 
-:root {
-    --header-height: 3.5rem;
-    --first-color: hsl(28, 88%, 62%);
-    --title-color: hsl(0, 0%, 95%);
-    --text-color: hsl(0, 0%, 75%);
-    --body-color: hsl(0, 0%, 6%);
-    --second-font: "Dancing Script", cursive;
-    --h2-font-size: 1.25rem;
-    --small-font-size: 0.813rem;
-    --z-tooltip: 10;
-    --z-fixed: 100;
-}
-
-body {
-    background-color: var(--body-color);
-    color: var(--text-color);
-}
 
 ul {
     list-style: none;
@@ -36,7 +19,8 @@ a {
     top: 0;
     left: 0;
     background-color: transparent;
-    z-index: var(--z-fixed);
+    z-index: 100;
+    font-family: "Inter";
 }
 
 .nav {
@@ -50,7 +34,7 @@ a {
     padding: 10px 30px;
     border-radius: 100px;
     height: 65px !important;
-    background: rgba(105, 105, 105, 0.2);
+    background: rgba(105, 105, 105, 0.4);
     font-size: clamp(12px, 3vw, 14px);
 }
 
