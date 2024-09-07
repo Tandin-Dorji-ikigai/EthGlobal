@@ -27,16 +27,26 @@ const Navbar = () => {
 
                     <div className={`nav__menu ${showMenu ? "show-menu" : ""}`} id="nav-menu">
                         <ul className="nav__list">
-                            
+
+                            <li className="nav__item">
+                                <NavLink to="/voting" className="nav__link" onClick={closeMenuOnMobile}>
+                                    User Attestations
+                                </NavLink>
+                            </li>
+                            <li className="nav__item">
+                                <NavLink to="/voting" className="nav__link" onClick={closeMenuOnMobile}>
+                                    Create Polls
+                                </NavLink>
+                            </li>
                             <li className="nav__item">
                                 <NavLink to="/voting" className="nav__link" onClick={closeMenuOnMobile}>
                                     Voting Polls
                                 </NavLink>
                             </li>
-                           
+
                             <li className="nav__item">
                                 <NavLink to="/login" className="nav__link" onClick={closeMenuOnMobile}>
-                                   <img src={MetaImg} alt="" />
+                                    <img src={MetaImg} alt="" />
                                 </NavLink>
                             </li>
                             <li className="nav__item">
