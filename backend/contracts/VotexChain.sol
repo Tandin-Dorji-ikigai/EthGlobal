@@ -8,13 +8,18 @@ contract VotexChain {
         uint256 startTime;
         uint256 endTime;
         bool active;
-        address[] candidates;
+        address[] candidate_addresses;
         mapping(bytes32 => bool) hasVoted; // Hashes of voters to check if they voted
         mapping(address => uint256) votes; // Votes per candidate
     }
 
+    struct Candidate {
+        string name;
+        string photoURL;
+    }
+
     mapping(uint256 => Election) public elections;
-    mapping(address => string) public candidatePhotos; // Store photo URLs for candidates
+    mapping(address => Candidate) public candidatesInfo; // Store candidate names and photos
     uint256 public electionCount;
 
     address public admin;
@@ -58,12 +63,18 @@ contract VotexChain {
         uint256 _startTime,
         uint256 _endTime,
         address[] memory _candidates,
-        string[] memory _photoURLs // New parameter for photo URLs
+        string[] memory _names,
+        string[] memory _photoURLs
     ) public onlyAdmin {
         require(_startTime < _endTime, "Start time must be before end time");
         require(
             _candidates.length == _photoURLs.length,
             "Each candidate must have a photo URL"
+        );
+        require(
+            _candidates.length == _photoURLs.length &&
+                _candidates.length == _names.length,
+            "Each candidate must have a name and a photo URL"
         );
 
         electionCount++;
@@ -72,12 +83,14 @@ contract VotexChain {
         newElection.description = _description;
         newElection.startTime = _startTime;
         newElection.endTime = _endTime;
-        newElection.candidates = _candidates;
+        newElection.candidate_addresses = _candidates;
         newElection.active = true;
 
-        // Store each candidate's photo URL
         for (uint256 i = 0; i < _candidates.length; i++) {
-            candidatePhotos[_candidates[i]] = _photoURLs[i];
+            candidatesInfo[_candidates[i]] = Candidate(
+                _names[i],
+                _photoURLs[i]
+            );
         }
 
         emit ElectionCreated(
@@ -101,7 +114,10 @@ contract VotexChain {
         bytes32 voteHash = keccak256(abi.encodePacked(msg.sender, electionId));
 
         require(!election.hasVoted[voteHash], "You have already voted");
-        require(checkValidCandidate(electionId, candidate), "Invalid candidate");
+        require(
+            checkValidCandidate(electionId, candidate),
+            "Invalid candidate"
+        );
 
         election.votes[candidate]++;
         election.hasVoted[voteHash] = true; // Mark voter as voted with hash
@@ -123,8 +139,12 @@ contract VotexChain {
         address candidate
     ) public view returns (bool) {
         bool validCandidate = false;
-        for (uint256 i = 0; i < elections[electionId].candidates.length; i++) {
-            if (elections[electionId].candidates[i] == candidate) {
+        for (
+            uint256 i = 0;
+            i < elections[electionId].candidate_addresses.length;
+            i++
+        ) {
+            if (elections[electionId].candidate_addresses[i] == candidate) {
                 validCandidate = true;
                 break;
             }
@@ -144,7 +164,16 @@ contract VotexChain {
     }
 
     // Get the photo URL of a candidate
-    function getCandidatePhoto(address candidate) public view returns (string memory) {
-        return candidatePhotos[candidate];
+    function getCandidatePhoto(
+        address candidate
+    ) public view returns (string memory) {
+        return candidatesInfo[candidate].photoURL;
+    }
+
+    // Get the name of a candidate
+    function getCandidateName(
+        address candidate
+    ) public view returns (string memory) {
+        return candidatesInfo[candidate].name;
     }
 }
