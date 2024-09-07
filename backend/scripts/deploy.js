@@ -4,7 +4,6 @@ async function main() {
 
     // await myContractInstance.deployed();
 
-    await myContractInstance.deployTransaction.wait();
     console.log("MyContract deployed to:", myContractInstance.address);
 }
 
