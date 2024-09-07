@@ -147,6 +147,12 @@ a {
     padding: 0.75rem 4rem !important;
 }
 
+.nav-btn-container{
+    column-gap: 10px;
+    display: flex;
+    
+}
+
 
 @media screen and (max-width: 1150px) {
     .nav__menu {
@@ -178,3 +184,4 @@ a {
         column-gap: 2.5rem;
     }
 }
+
