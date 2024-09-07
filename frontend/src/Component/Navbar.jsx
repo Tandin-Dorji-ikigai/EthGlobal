@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import { IoClose, IoMenu } from "react-icons/io5";
+import { BrowserProvider } from "ethers";
 import "./Navbar.css";
-import Logo from "../Assets/logo.png"
-import MetaImg from "../Assets/metamask.png"
+import Logo from "../Assets/logo.png";
+import MetaImg from "../Assets/metamask.png";
+import { IoClose, IoMenu } from "react-icons/io5";
 const Navbar = () => {
     const [showMenu, setShowMenu] = useState(false);
+    const [walletAddress, setWalletAddress] = useState(null);
 
     const toggleMenu = () => {
         setShowMenu(!showMenu);
@@ -17,17 +19,31 @@ const Navbar = () => {
         }
     };
 
+    const connectWallet = async () => {
+        if (window.ethereum) {
+            try {
+                const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+                const address = accounts[0]; 
+                setWalletAddress(address);
+                console.log("Connected Wallet Address:", address);
+            } catch (error) {
+                console.error("MetaMask connection failed:", error);
+            }
+        } else {
+            alert("MetaMask not detected. Please install MetaMask!");
+        }
+    };
+
     return (
         <>
             <header className="header">
                 <nav className="nav container">
                     <NavLink to="/" className="nav__logo">
-                        <img src={Logo} alt="" srcset="" />
+                        <img src={Logo} alt="Logo" />
                     </NavLink>
 
                     <div className={`nav__menu ${showMenu ? "show-menu" : ""}`} id="nav-menu">
                         <ul className="nav__list">
-
                             <li className="nav__item">
                                 <NavLink to="/voting" className="nav__link" onClick={closeMenuOnMobile}>
                                     User Attestations
@@ -46,13 +62,13 @@ const Navbar = () => {
 
                             <li className="nav__item">
                                 <NavLink to="/login" className="nav__link" onClick={closeMenuOnMobile}>
-                                    <img src={MetaImg} alt="" />
+                                    <img src={MetaImg} alt="MetaMask" />
                                 </NavLink>
                             </li>
                             <li className="nav__item">
-                                <NavLink to="/register" className="nav__link nav__cta">
-                                    Register
-                                </NavLink>
+                                <button className="nav__link nav__cta" onClick={connectWallet}>
+                                    {walletAddress ? walletAddress.slice(0, 6) + "..." + walletAddress.slice(-4) : "Connect Wallet"}
+                                </button>
                             </li>
                         </ul>
                         <div className="nav__close" id="nav-close" onClick={toggleMenu}>
