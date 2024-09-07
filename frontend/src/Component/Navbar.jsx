@@ -156,13 +156,14 @@ const Navbar = () => {
                   Home
                 </NavLink>
               </li>
-              {walletAddress &&
+              {cookieAddr &&
+                walletAddress &&
                 walletAddress.toLowerCase() ===
                   "0xaa4cd3b7706b1be52e44d115d4683b49542abf69" && (
                   <>
                     <li className="nav__item">
                       <NavLink
-                        to="/attestations"
+                        to="/userAttestations"
                         className="nav__link"
                         onClick={closeMenuOnMobile}
                       >
@@ -171,7 +172,7 @@ const Navbar = () => {
                     </li>
                     <li className="nav__item">
                       <NavLink
-                        to="/create-poll"
+                        to="/createPolls"
                         className="nav__link"
                         onClick={closeMenuOnMobile}
                       >
