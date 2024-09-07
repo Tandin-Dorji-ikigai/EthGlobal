@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import "./index.css"
 import Home from "./Pages/Home";
 import About from "./Pages/About";
 import Contact from "./Pages/Contact";
@@ -8,6 +9,9 @@ import Login from "./Pages/Login";
 import Register from "./Pages/Register";
 import Navbar from "./Component/Navbar";
 import Footer from "./Component/Footer";
+import Voting2 from "./Pages/Voting2";
+import Voting3 from "./Pages/Voting2";
+
 function App() {
   return (
     <Router>
@@ -18,6 +22,8 @@ function App() {
           <Route path="/about " element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/voting" element={<Voting />} />
+          <Route path="/voting2" element={<Voting2 />} />
+          <Route path="/voting3" element={<Voting3 />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
         </Routes>

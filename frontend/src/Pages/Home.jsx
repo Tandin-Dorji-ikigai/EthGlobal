@@ -1,10 +1,24 @@
 import React, { useState } from 'react'
-import Navbar from '../Component/Navbar';
 import "./css/Home.css"
+import Banner from "../Assets/banner.png"
+import { Link } from "react-router-dom";
 
 function Home() {
   return (
     <>
+      <div className="banner-wrapper">
+        <div className="overlay-banner"></div>
+        <img src={Banner} alt="" srcset="" />
+        <div className="banner-content">
+          <p className="sup-text">Introducing Votexchain</p>
+          <p className="main-text">Redefining Voting with blockhain security</p>
+          <p className="sub-text">From identity verification to final tallying, experience transparent elections powered by the latest in decentralized technology.</p>
+
+          <Link to="/register" className="nav__link nav__cta cta-banner">
+            Register
+          </Link>
+        </div>
+      </div>
       <div className="features-wrapper">
         <div className="features">
           <p className='feature-topic'>KEY FEATURES</p>
