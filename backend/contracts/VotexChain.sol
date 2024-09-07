@@ -15,7 +15,7 @@ contract VotexChain {
 
     struct Candidate {
         string name;
-        string photoURL;
+        string photo;
     }
 
     mapping(uint256 => Election) public elections;
@@ -64,15 +64,15 @@ contract VotexChain {
         uint256 _endTime,
         address[] memory _candidates,
         string[] memory _names,
-        string[] memory _photoURLs
+        string[] memory _photos
     ) public onlyAdmin {
         require(_startTime < _endTime, "Start time must be before end time");
         require(
-            _candidates.length == _photoURLs.length,
+            _candidates.length == _photos.length,
             "Each candidate must have a photo URL"
         );
         require(
-            _candidates.length == _photoURLs.length &&
+            _candidates.length == _photos.length &&
                 _candidates.length == _names.length,
             "Each candidate must have a name and a photo URL"
         );
@@ -87,10 +87,7 @@ contract VotexChain {
         newElection.active = true;
 
         for (uint256 i = 0; i < _candidates.length; i++) {
-            candidatesInfo[_candidates[i]] = Candidate(
-                _names[i],
-                _photoURLs[i]
-            );
+            candidatesInfo[_candidates[i]] = Candidate(_names[i], _photos[i]);
         }
 
         emit ElectionCreated(
@@ -167,7 +164,7 @@ contract VotexChain {
     function getCandidatePhoto(
         address candidate
     ) public view returns (string memory) {
-        return candidatesInfo[candidate].photoURL;
+        return candidatesInfo[candidate].photo;
     }
 
     // Get the name of a candidate
