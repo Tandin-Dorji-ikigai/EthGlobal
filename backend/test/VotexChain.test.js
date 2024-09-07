@@ -20,29 +20,51 @@ describe("VotexChain", function () {
   });
 
   describe("Creating an Election", function () {
-    it("Should create an election with valid parameters", async function () {
+    it("Should create an election with valid parameters and store candidate photos", async function () {
       const { votexChain, admin, candidate1, candidate2 } = await loadFixture(deployVotexChainFixture);
       const candidates = [candidate1.address, candidate2.address];
+      const names = ["Jigme", "Namgay"]
+      const photoURLs = ["photo1_url", "photo2_url"];
       const startTime = await time.latest() + 60; // Starts in 60 seconds
       const endTime = startTime + 3600; // Ends in 1 hour
 
-      await votexChain.connect(admin).createElection("Election 1", startTime, endTime, candidates);
+      await votexChain.connect(admin).createElection("Election 1", "Test Election", startTime, endTime, candidates, names, photoURLs);
       const election = await votexChain.elections(1); // Since electionCount starts at 1
       expect(election.name).to.equal("Election 1");
+      expect(election.description).to.equal("Test Election");
       expect(election.active).to.be.true;
       expect(election.startTime).to.equal(startTime);
       expect(election.endTime).to.equal(endTime);
+
+      // Check that the photos were correctly stored
+      expect(await votexChain.getCandidatePhoto(candidate1.address)).to.equal("photo1_url");
+      expect(await votexChain.getCandidatePhoto(candidate2.address)).to.equal("photo2_url");
     });
 
     it("Should revert if non-admin tries to create an election", async function () {
       const { votexChain, voter1, candidate1, candidate2 } = await loadFixture(deployVotexChainFixture);
       const candidates = [candidate1.address, candidate2.address];
+      const names = ["Jigme", "Namgay"]
+      const photoURLs = ["photo1_url", "photo2_url"];
       const startTime = await time.latest() + 60;
       const endTime = startTime + 3600;
 
       await expect(
-        votexChain.connect(voter1).createElection("Election 1", startTime, endTime, candidates)
+        votexChain.connect(voter1).createElection("Election 1", "Test Election", startTime, endTime, candidates, names, photoURLs)
       ).to.be.revertedWith("Only admin can perform this action");
+    });
+
+    it("Should revert if the number of candidates does not match photo URLs", async function () {
+      const { votexChain, admin, candidate1, candidate2 } = await loadFixture(deployVotexChainFixture);
+      const candidates = [candidate1.address, candidate2.address];
+      const photoURLs = ["photo1_url"];
+      const names = ["Jigme", "Namgay"];
+      const startTime = await time.latest() + 60;
+      const endTime = startTime + 3600;
+
+      await expect(
+        votexChain.connect(admin).createElection("Election 1", "Test Election", startTime, endTime, candidates, names, photoURLs)
+      ).to.be.revertedWith("Each candidate must have a photo URL");
     });
   });
 
@@ -50,10 +72,12 @@ describe("VotexChain", function () {
     async function setupElectionFixture() {
       const { votexChain, admin, voter1, voter2, candidate1, candidate2 } = await loadFixture(deployVotexChainFixture);
       const candidates = [candidate1.address, candidate2.address];
+      const photoURLs = ["photo1_url", "photo2_url"];
+      const names = ["Jigme", "Namgay"]
       const startTime = await time.latest() + 60;
       const endTime = startTime + 3600;
 
-      await votexChain.connect(admin).createElection("Election 1", startTime, endTime, candidates);
+      await votexChain.connect(admin).createElection("Election 1", "Test Election", startTime, endTime, candidates, names, photoURLs);
 
       return { votexChain, admin, voter1, voter2, candidate1, candidate2, startTime, endTime };
     }
@@ -110,7 +134,7 @@ describe("VotexChain", function () {
     });
 
     it("Should emit an event when an election ends", async function () {
-      const { votexChain, admin, startTime, endTime } = await loadFixture(setupElectionFixture);
+      const { votexChain, admin, endTime } = await loadFixture(setupElectionFixture);
 
       await time.increaseTo(endTime);
 

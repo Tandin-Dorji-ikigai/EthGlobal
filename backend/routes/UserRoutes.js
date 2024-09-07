@@ -7,7 +7,7 @@ router
     .get(userController.getAllUsers)
     .post(userController.createUser)
 
-    router
+router
     .route('/:id')
     .get(userController.getUser)
     .patch(userController.updateUser)
