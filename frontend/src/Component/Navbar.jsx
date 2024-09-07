@@ -29,12 +29,17 @@ const Navbar = () => {
                         <ul className="nav__list">
 
                             <li className="nav__item">
-                                <NavLink to="/voting" className="nav__link" onClick={closeMenuOnMobile}>
+                                <NavLink to="/" className="nav__link" onClick={closeMenuOnMobile}>
+                                    Home
+                                </NavLink>
+                            </li>
+                            <li className="nav__item">
+                                <NavLink to="/userAttestations" className="nav__link" onClick={closeMenuOnMobile}>
                                     User Attestations
                                 </NavLink>
                             </li>
                             <li className="nav__item">
-                                <NavLink to="/voting" className="nav__link" onClick={closeMenuOnMobile}>
+                                <NavLink to="/createPolls" className="nav__link" onClick={closeMenuOnMobile}>
                                     Create Polls
                                 </NavLink>
                             </li>
@@ -45,13 +50,12 @@ const Navbar = () => {
                             </li>
 
                             <li className="nav__item">
-                                <NavLink to="/login" className="nav__link" onClick={closeMenuOnMobile}>
-                                    <img src={MetaImg} alt="" />
-                                </NavLink>
-                            </li>
-                            <li className="nav__item">
-                                <NavLink to="/register" className="nav__link nav__cta">
-                                    Register
+                                <NavLink to="/connect-wallet" onClick={closeMenuOnMobile} className="metamask-button">
+                                    <button className="nav__cta">
+                                        <img src={MetaImg} alt="MetaMask Logo" className="meta-img" />
+                                        Connect MetaMask
+                                    </button>
+
                                 </NavLink>
                             </li>
                         </ul>
