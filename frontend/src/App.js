@@ -8,6 +8,7 @@ import Footer from "./Component/Footer";
 import Voting2 from "./Pages/Voting2";
 import Attestations from "./Pages/Attestation";
 import CreatePolls from "./Pages/CreatePolls";
+import UserAttestations from "./Pages/UserAttestation";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/createPolls" element={<CreatePolls />} />
           <Route path="/voting" element={<Voting />} />
           <Route path="/voting2" element={<Voting2 />} />
+          <Route path="/userAttestations" element={<UserAttestations />} />
         </Routes>
       </main>
       <Footer />

@@ -97,20 +97,17 @@ const Navbar = () => {
 
                     <div className={`nav__menu ${showMenu ? "show-menu" : ""}`} id="nav-menu">
                         <ul className="nav__list">
-                            {walletAddress && walletAddress.toLowerCase() === "0xaa4cd3b7706b1be52e44d115d4683b49542abf69" && (
-                                <>
-                                    <li className="nav__item">
-                                        <NavLink to="/attestations" className="nav__link" onClick={closeMenuOnMobile}>
-                                            User Attestations
-                                        </NavLink>
-                                    </li>
-                                    <li className="nav__item">
-                                        <NavLink to="/create-poll" className="nav__link" onClick={closeMenuOnMobile}>
-                                            Create Polls
-                                        </NavLink>
-                                    </li>
-                                </>
-                            )}
+
+                            <li className="nav__item">
+                                <NavLink to="/voting" className="nav__link" onClick={closeMenuOnMobile}>
+                                    User Attestations
+                                </NavLink>
+                            </li>
+                            <li className="nav__item">
+                                <NavLink to="/voting" className="nav__link" onClick={closeMenuOnMobile}>
+                                    Create Polls
+                                </NavLink>
+                            </li>
                             <li className="nav__item">
                                 <NavLink to="/voting" className="nav__link" onClick={closeMenuOnMobile}>
                                     Voting Polls
@@ -119,24 +116,13 @@ const Navbar = () => {
 
                             <li className="nav__item">
                                 <NavLink to="/login" className="nav__link" onClick={closeMenuOnMobile}>
-                                    <img src={MetaImg} alt="MetaMask" />
+                                    <img src={MetaImg} alt="" />
                                 </NavLink>
                             </li>
-                            <li className="nav__item nav-btn-container">
-                                {walletAddress ? (
-                                    <>
-                                        <button className="nav__link nav__cta" onClick={Attestation}>
-                                            Attestation
-                                        </button>
-                                        <button className="nav__link nav__cta" onClick={disconnectWallet}>
-                                            Disconnect
-                                        </button>
-                                    </>
-                                ) : (
-                                    <button className="nav__link nav__cta" onClick={connectWallet}>
-                                        Connect Wallet
-                                    </button>
-                                )}
+                            <li className="nav__item">
+                                <NavLink to="/register" className="nav__link nav__cta">
+                                    Register
+                                </NavLink>
                             </li>
                         </ul>
                         <div className="nav__close" id="nav-close" onClick={toggleMenu}>

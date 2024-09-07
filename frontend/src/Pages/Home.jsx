@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import "./css/Home.css"
 import Banner from "../Assets/banner.png"
 import { Link } from "react-router-dom";

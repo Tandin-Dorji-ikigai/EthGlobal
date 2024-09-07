@@ -14,7 +14,7 @@
 
 .voting-title {
     color: #EACCFF;
-    font-size: clamp(14px, 3vw, 16px);
+    font-size: clamp(28px, 3vw, 32px);
     font-family: 'Microsport Bold';
     font-weight: bolder;
     margin-bottom: 13px;
@@ -101,4 +101,329 @@
 .view-more-btn:hover {
     cursor: pointer;
     filter: brightness(90%);
+}
+
+/* Form  */
+
+.attestation-form-container {
+    margin-top: 30px;
+    padding: 20px 30px;
+    border: 1px solid #1C719E;
+    border-radius: 8px;
+    background: #0C3A53;
+    font-family: "inter";
+}
+
+.attestation-form-container h2 {
+    margin-bottom: 20px;
+    font-size: clamp(20px, 3vw, 24px);
+    font-family: 'Microsport Bold';
+    font-weight: bolder;
+    color: #EACCFF;
+}
+
+.attestation-form-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.attestation-form-group {
+    flex: 1;
+    margin-top: 20px;
+}
+
+.attestation-form-group:last-child {
+    margin-right: 0;
+}
+
+.attestation-form-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #FFFFFF;
+}
+
+.attestation-form-group input {
+    width: 90%;
+    padding: 10px;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    font-size: 14px;
+    outline: none;
+    height: 40px;
+}
+
+.attestation-form-group .electionName {
+    width: 45%;
+}
+
+.attestation-error {
+    color: rgb(220, 25, 25);
+    font-size: 12px;
+    margin-top: 5px;
+    display: block;
+}
+
+.candidate-section {
+    margin-top: 30px;
+}
+
+.attestation-confirm-btn {
+    display: block;
+    width: 18%;
+    padding: 12px;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 20px;
+    transition: all 0.3s ease-in-out;
+    background: linear-gradient(90deg, #D4A6FF 0%, #9747E1 27%, #7122BB 77%);
+}
+
+.attestation-candidate-add {
+    border: none;
+    font-size: 16px;
+    padding-left: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    background: none;
+    text-align: left;
+    margin-bottom: 50px;
+    color: #C167FF;
+}
+
+.attestation-candidate-remove {
+    margin-bottom: 20px;
+}
+
+.attestation-candidate-add:hover {
+    filter: brightness(0.8);
+}
+
+.attestation-confirm-btn:hover {
+    filter: brightness(0.8);
+}
+
+
+.attestation-form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    font-size: 14px;
+    resize: none;
+}
+
+.attestation-form-group textarea:focus {
+    outline: none;
+}
+
+.attestation-form-row.image-upload {
+    width: 44%;
+}
+
+.attestation-form-row.image-upload {
+    width: 44%;
+}
+
+.attestation-form-group.image-upload {
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+}
+
+.attestation-form-group.image-upload label {
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    margin-bottom: 5px;
+}
+
+.attestation-form-group.image-upload input[type="file"] {
+    display: none;
+}
+
+.custom-file-upload {
+    background-color: #007F7F;
+    color: white;
+    padding: 15px 10px;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+}
+
+.attestation-error {
+    color: rgb(220, 25, 25);
+    font-size: 12px;
+    margin-top: 5px;
+    display: block;
+}
+
+.can-main-top {
+    margin-top: 50px;
+}
+
+.candidate-count {
+    font-size: clamp(14px, 3vw, 16px) !important;
+    color: #FFFFFF !important;
+    margin-bottom: 0 !important;
+}
+
+.userAttestations-wrapper {
+    width: 90%;
+    margin: 0 auto;
+    height: auto;
+    position: relative;
+    margin-top: 50px;
+}
+
+.userAttestations-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, #0C3A53 0%, #1C719E 52%, #0C3A53 100%);
+    border-radius: 10px;
+}
+
+.userAttestations{
+    height: 80px;
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.userAttestations::after{
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, #0C3A53 0%, #1C719E 52%, #0C3A53 100%);
+    border-radius: 10px;
+}
+
+.userAttestations p{
+    font-size: clamp(14px,3vw,16px);
+    color: #FFFFFF;
+    font-family: 'Microsport Bold';
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.userAttestations button{
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    color: #A0DEFF;
+    font-family: "Inter";
+    font-weight: 500;
+    transition: all 0.3s ease-in;
+    font-size: clamp(12px,3vw,14px);
+}
+
+.userAttestations button:hover{
+    filter: brightness(0.8);
+}
+
+.userAssBtns{
+    display: flex;
+    gap: 30px;
+}
+
+.userAssBtns :nth-child(2){
+    color: rgb(211, 94, 94);
+}
+
+/* Popup styles */
+.attestation-popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.attestation-popup {
+    background: #0C3A53;
+    padding: 20px;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 500px;
+    position: relative;
+}
+
+.attestation-popup h2 {
+    color: #EACCFF;
+    font-size: 24px;
+    font-family: 'Microsport Bold';
+    margin: 0 auto;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.attestation-popup .attestation-id {
+    color: #FFFFFF;
+    font-size: 18px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-family: 'Microsport Bold';
+    letter-spacing: 1px;
+    font-weight: bold;
+}
+
+.attestation-popup .attestation-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.attestation-popup .attestation-row p {
+    color: #FFFFFF;
+    font-size: 16px;
+    font-family: 'Inter';
+}
+
+.attestation-popup .attestation-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+    margin-bottom: 20px;
+}
+
+.attestation-popup .attestation-column :nth-child(1) {
+    margin-bottom: 5px;
+    color: #A0DEFF;
+}
+
+.attestation-popup .close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+.attestation-popup .close-button:hover {
+    color: #A0DEFF;
 }
