@@ -4,10 +4,12 @@ import "./Navbar.css";
 import Logo from "../Assets/logo.png";
 import MetaImg from "../Assets/metamask.png";
 import { IoClose, IoMenu } from "react-icons/io5";
+import Loader from "./Loader"; // Import the Loader component
 
 const Navbar = () => {
     const [showMenu, setShowMenu] = useState(false);
     const [walletAddress, setWalletAddress] = useState(null);
+    const [loading, setLoading] = useState(false); // State for loader visibility
 
     const toggleMenu = () => {
         setShowMenu(!showMenu);
@@ -51,38 +53,42 @@ const Navbar = () => {
     };
 
     const connectWallet = async () => {
+        setLoading(true); 
         if (window.ethereum) {
             try {
-                // Request account permissions and trigger MetaMask prompt
                 const permissions = await window.ethereum.request({
                     method: 'wallet_requestPermissions',
                     params: [{ eth_accounts: {} }],
                 });
 
                 if (permissions) {
-                    // After requesting permissions, get the accounts
                     const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
                     const address = accounts[0];
-                    setWalletAddress(address); // Set new wallet address
+                    setWalletAddress(address);
                     console.log("Connected Wallet Address:", address);
                 }
             } catch (error) {
                 console.error("MetaMask connection failed:", error);
+            } finally {
+                setLoading(false); 
             }
         } else {
             alert("MetaMask not detected. Please install MetaMask!");
+            setLoading(false); 
         }
     };
 
-    // Function to disconnect the current wallet
-    const disconnectWallet = () => {
-        setWalletAddress(null); // Clear the wallet address
+    const disconnectWallet = async () => {
+        setLoading(true); 
+        setWalletAddress(null);
         console.log("Wallet disconnected.");
         alert("You can switch your wallet by selecting a different account in MetaMask.");
+        setLoading(false); 
     };
 
     return (
         <>
+            {loading && <Loader />}
             <header className="header">
                 <nav className="nav container">
                     <NavLink to="/" className="nav__logo">
