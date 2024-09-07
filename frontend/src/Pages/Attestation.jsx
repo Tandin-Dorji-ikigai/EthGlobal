@@ -10,31 +10,31 @@ function Attestations() {
         dob: ''
     });
 
+
+    const [cookieAddr, setCookieAddr] = useState(null);
+    const getCookie = (name) => {
+        const value = `; ${document.cookie}`;
+        const parts = value.split(`; ${name}=`);
+        if (parts.length === 2) return parts.pop().split(';').shift();
+        return null;
+    };
     const [errors, setErrors] = useState({});
-    const navigate = useNavigate(); // Initialize useNavigate
+    const navigate = useNavigate();
 
-    // Check wallet connection when component mounts
+    const GetCookieData = () => {
+        const address = getCookie('walletAddress');
+        if (address) {
+            setCookieAddr(address);
+        }
+    };
+
+    if (!cookieAddr) {
+        window.location.href = "/"
+    }
+
     useEffect(() => {
-        const checkWalletConnection = async () => {
-            if (window.ethereum) {
-                try {
-                    const accounts = await window.ethereum.request({ method: 'eth_accounts' });
-                    if (accounts.length === 0) {
-                        // Redirect to homepage if no accounts are connected
-                        navigate('/');
-                    }
-                } catch (error) {
-                    console.error("Failed to check wallet connection:", error);
-                    navigate('/');
-                }
-            } else {
-                // Redirect if MetaMask is not installed
-                navigate('/');
-            }
-        };
-
-        checkWalletConnection();
-    }, [navigate]); // Add navigate as a dependency
+        GetCookieData();
+    });
 
     const handleChange = (e) => {
         const { name, value } = e.target;

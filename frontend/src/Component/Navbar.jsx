@@ -4,12 +4,20 @@ import "./Navbar.css";
 import Logo from "../Assets/logo.png";
 import MetaImg from "../Assets/metamask.png";
 import { IoClose, IoMenu } from "react-icons/io5";
-import Loader from "./Loader"; // Import the Loader component
+import Loader from "./Loader";
+
+const getCookie = (name) => {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+    return null;
+};
 
 const Navbar = () => {
     const [showMenu, setShowMenu] = useState(false);
     const [walletAddress, setWalletAddress] = useState(null);
-    const [loading, setLoading] = useState(false); // State for loader visibility
+    const [loading, setLoading] = useState(false); 
+    const [cookieAddr, setCookieAddr] = useState(null); 
 
     const toggleMenu = () => {
         setShowMenu(!showMenu);
@@ -21,14 +29,28 @@ const Navbar = () => {
         }
     };
 
+    // Function to get cookie data
+    const GetCookieData = () => {
+        const address = getCookie('walletAddress');
+        if (address) {
+            setCookieAddr(address);
+        }
+    };
+
     // Check if wallet is already connected when component mounts
     useEffect(() => {
+        GetCookieData(); // Initialize state with cookie data
+
         const checkConnectedWallet = async () => {
             if (window.ethereum) {
                 try {
-                    const accounts = await window.ethereum.request({ method: 'eth_accounts' });
-                    if (accounts.length > 0) {
-                        setWalletAddress(accounts[0]);
+                    if (cookieAddr) {
+                        setWalletAddress(cookieAddr);
+                    } else {
+                        const accounts = await window.ethereum.request({ method: 'eth_accounts' });
+                        if (accounts.length > 0) {
+                            setWalletAddress(accounts[0]);
+                        }
                     }
                 } catch (error) {
                     console.error("Failed to check connected wallet:", error);
@@ -40,8 +62,10 @@ const Navbar = () => {
         const handleAccountsChanged = (accounts) => {
             if (accounts.length > 0) {
                 setWalletAddress(accounts[0]);
+                document.cookie = `walletAddress=${accounts[0]}; path=/; max-age=${60 * 60 * 24 * 30}`; // Set cookie
             } else {
                 setWalletAddress(null);
+                document.cookie = 'walletAddress=; path=/; max-age=0'; // Clear cookie
             }
         };
 
@@ -54,14 +78,14 @@ const Navbar = () => {
                 window.ethereum.removeListener("accountsChanged", handleAccountsChanged);
             }
         };
-    }, []);
+    }, [cookieAddr]);
 
     const Attestation = () => {
         window.location.href = "/attestations";
     };
 
     const connectWallet = async () => {
-        setLoading(true); 
+        setLoading(true);
         if (window.ethereum) {
             try {
                 const permissions = await window.ethereum.request({
@@ -73,7 +97,8 @@ const Navbar = () => {
                     const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
                     const address = accounts[0];
                     setWalletAddress(address);
-                    console.log("Connected Wallet Address:", address);
+                    document.cookie = `walletAddress=${address}; path=/; max-age=${60 * 60 * 24 * 30}`;
+                    window.location.reload()
                 }
             } catch (error) {
                 console.error("MetaMask connection failed:", error);
@@ -82,21 +107,22 @@ const Navbar = () => {
             }
         } else {
             alert("MetaMask not detected. Please install MetaMask!");
-            setLoading(false); // Hide loader
+            setLoading(false);
         }
     };
 
     const disconnectWallet = async () => {
-        setLoading(true); 
+        setLoading(true);
         setWalletAddress(null);
-        console.log("Wallet disconnected.");
         alert("You can switch your wallet by selecting a different account in MetaMask.");
-        setLoading(false); 
+        document.cookie = 'walletAddress=; path=/; max-age=0'; // Clear the cookie
+        setLoading(false);
+        window.location.reload()
     };
 
     return (
         <>
-            {loading && <Loader />} {/* Show loader if loading is true */}
+            {loading && <Loader />} 
             <header className="header">
                 <nav className="nav container">
                     <NavLink to="/" className="nav__logo">
@@ -112,7 +138,6 @@ const Navbar = () => {
                             </li>
                             {walletAddress && walletAddress.toLowerCase() === "0xaa4cd3b7706b1be52e44d115d4683b49542abf69" && (
                                 <>
-
                                     <li className="nav__item">
                                         <NavLink to="/attestations" className="nav__link" onClick={closeMenuOnMobile}>
                                             User Attestations
@@ -125,16 +150,14 @@ const Navbar = () => {
                                     </li>
                                 </>
                             )}
-
                             <li className="nav__item">
                                 <NavLink to="/voting" className="nav__link" onClick={closeMenuOnMobile}>
                                     Voting Polls
                                 </NavLink>
                             </li>
 
-
                             <li className="nav__item nav-btn-container">
-                                {walletAddress ? (
+                                {cookieAddr ? (
                                     <>
                                         <button className="nav__link nav__cta" onClick={Attestation}>
                                             Attestation
@@ -148,7 +171,6 @@ const Navbar = () => {
                                         <img src={MetaImg} alt="MetaMask Logo" className="meta-img" />
                                         Connect MetaMask
                                     </button>
-
                                 )}
                             </li>
                         </ul>
