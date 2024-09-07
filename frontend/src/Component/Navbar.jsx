@@ -37,15 +37,23 @@ const Navbar = () => {
         };
         checkConnectedWallet();
 
+        const handleAccountsChanged = (accounts) => {
+            if (accounts.length > 0) {
+                setWalletAddress(accounts[0]);
+            } else {
+                setWalletAddress(null);
+            }
+        };
+
         if (window.ethereum) {
-            window.ethereum.on("accountsChanged", (accounts) => {
-                if (accounts.length > 0) {
-                    setWalletAddress(accounts[0]);
-                } else {
-                    setWalletAddress(null);
-                }
-            });
+            window.ethereum.on("accountsChanged", handleAccountsChanged);
         }
+
+        return () => {
+            if (window.ethereum) {
+                window.ethereum.removeListener("accountsChanged", handleAccountsChanged);
+            }
+        };
     }, []);
 
     const Attestation = () => {
@@ -70,11 +78,11 @@ const Navbar = () => {
             } catch (error) {
                 console.error("MetaMask connection failed:", error);
             } finally {
-                setLoading(false); 
+                setLoading(false);
             }
         } else {
             alert("MetaMask not detected. Please install MetaMask!");
-            setLoading(false); 
+            setLoading(false); // Hide loader
         }
     };
 
@@ -88,7 +96,7 @@ const Navbar = () => {
 
     return (
         <>
-            {loading && <Loader />}
+            {loading && <Loader />} {/* Show loader if loading is true */}
             <header className="header">
                 <nav className="nav container">
                     <NavLink to="/" className="nav__logo">
@@ -97,32 +105,51 @@ const Navbar = () => {
 
                     <div className={`nav__menu ${showMenu ? "show-menu" : ""}`} id="nav-menu">
                         <ul className="nav__list">
+                            <li className="nav__item">
+                                <NavLink to="/" className="nav__link" onClick={closeMenuOnMobile}>
+                                    Home
+                                </NavLink>
+                            </li>
+                            {walletAddress && walletAddress.toLowerCase() === "0xaa4cd3b7706b1be52e44d115d4683b49542abf69" && (
+                                <>
 
-                            <li className="nav__item">
-                                <NavLink to="/voting" className="nav__link" onClick={closeMenuOnMobile}>
-                                    User Attestations
-                                </NavLink>
-                            </li>
-                            <li className="nav__item">
-                                <NavLink to="/voting" className="nav__link" onClick={closeMenuOnMobile}>
-                                    Create Polls
-                                </NavLink>
-                            </li>
+                                    <li className="nav__item">
+                                        <NavLink to="/attestations" className="nav__link" onClick={closeMenuOnMobile}>
+                                            User Attestations
+                                        </NavLink>
+                                    </li>
+                                    <li className="nav__item">
+                                        <NavLink to="/create-poll" className="nav__link" onClick={closeMenuOnMobile}>
+                                            Create Polls
+                                        </NavLink>
+                                    </li>
+                                </>
+                            )}
+
                             <li className="nav__item">
                                 <NavLink to="/voting" className="nav__link" onClick={closeMenuOnMobile}>
                                     Voting Polls
                                 </NavLink>
                             </li>
 
-                            <li className="nav__item">
-                                <NavLink to="/login" className="nav__link" onClick={closeMenuOnMobile}>
-                                    <img src={MetaImg} alt="" />
-                                </NavLink>
-                            </li>
-                            <li className="nav__item">
-                                <NavLink to="/register" className="nav__link nav__cta">
-                                    Register
-                                </NavLink>
+
+                            <li className="nav__item nav-btn-container">
+                                {walletAddress ? (
+                                    <>
+                                        <button className="nav__link nav__cta" onClick={Attestation}>
+                                            Attestation
+                                        </button>
+                                        <button className="nav__link nav__cta" onClick={disconnectWallet}>
+                                            Disconnect
+                                        </button>
+                                    </>
+                                ) : (
+                                    <button className="nav__ctaa" onClick={connectWallet}>
+                                        <img src={MetaImg} alt="MetaMask Logo" className="meta-img" />
+                                        Connect MetaMask
+                                    </button>
+
+                                )}
                             </li>
                         </ul>
                         <div className="nav__close" id="nav-close" onClick={toggleMenu}>

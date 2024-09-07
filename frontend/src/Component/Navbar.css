@@ -147,7 +147,7 @@ a {
     padding: 0.75rem 4rem !important;
 }
 
-.nav__cta {
+.nav__ctaa {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -159,16 +159,23 @@ a {
     padding: 0.75rem 1.5rem;
     color: #FFFFFF;
     font-weight: bold;
-    gap: 0.5rem; 
+    gap: 0.5rem;
 }
 
-.nav__cta:hover{
+.nav__ctaa:hover {
     filter: brightness(0.8);
 }
+
 .meta-img {
-    width: 24px; 
-    height: 24px; 
-    margin-right: 8px; 
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+}
+
+.nav-btn-container {
+    column-gap: 10px;
+    display: flex;
+
 }
 
 
@@ -202,4 +209,3 @@ a {
         column-gap: 2.5rem;
     }
 }
-
