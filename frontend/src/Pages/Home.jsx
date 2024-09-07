@@ -8,7 +8,7 @@ function Home() {
     <>
       <div className="banner-wrapper">
         <div className="overlay-banner"></div>
-        <img src={Banner} alt="" srcset="" />
+        <img src={Banner} alt="" />
         <div className="banner-content">
           <p className="sup-text">Introducing Votexchain</p>
           <p className="main-text">Redefining Voting with blockhain security</p>
