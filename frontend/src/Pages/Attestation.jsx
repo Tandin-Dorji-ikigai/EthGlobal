@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate for redirection
+import React, { useState } from 'react';
 import "./css/votingpoll.css";
 
 function Attestations() {
@@ -10,31 +9,7 @@ function Attestations() {
         dob: ''
     });
 
-
-    const [cookieAddr, setCookieAddr] = useState(null);
-    const getCookie = (name) => {
-        const value = `; ${document.cookie}`;
-        const parts = value.split(`; ${name}=`);
-        if (parts.length === 2) return parts.pop().split(';').shift();
-        return null;
-    };
     const [errors, setErrors] = useState({});
-    const navigate = useNavigate();
-
-    const GetCookieData = () => {
-        const address = getCookie('walletAddress');
-        if (address) {
-            setCookieAddr(address);
-        }
-    };
-
-    if (!cookieAddr) {
-        window.location.href = "/"
-    }
-
-    useEffect(() => {
-        GetCookieData();
-    });
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -102,7 +77,7 @@ function Attestations() {
                                     placeholder='Enter your cid'
                                     value={formData.cid}
                                     onChange={handleChange}
-                                />
+                                    />
                                 {errors.cid && <span className="attestation-error">{errors.cid}</span>}
                             </div>
                         </div>
