@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate for redirection
 import "./css/votingpoll.css";
 
 function Attestations() {
@@ -10,6 +11,30 @@ function Attestations() {
     });
 
     const [errors, setErrors] = useState({});
+    const navigate = useNavigate(); // Initialize useNavigate
+
+    // Check wallet connection when component mounts
+    useEffect(() => {
+        const checkWalletConnection = async () => {
+            if (window.ethereum) {
+                try {
+                    const accounts = await window.ethereum.request({ method: 'eth_accounts' });
+                    if (accounts.length === 0) {
+                        // Redirect to homepage if no accounts are connected
+                        navigate('/');
+                    }
+                } catch (error) {
+                    console.error("Failed to check wallet connection:", error);
+                    navigate('/');
+                }
+            } else {
+                // Redirect if MetaMask is not installed
+                navigate('/');
+            }
+        };
+
+        checkWalletConnection();
+    }, [navigate]); // Add navigate as a dependency
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -77,7 +102,7 @@ function Attestations() {
                                     placeholder='Enter your cid'
                                     value={formData.cid}
                                     onChange={handleChange}
-                                    />
+                                />
                                 {errors.cid && <span className="attestation-error">{errors.cid}</span>}
                             </div>
                         </div>

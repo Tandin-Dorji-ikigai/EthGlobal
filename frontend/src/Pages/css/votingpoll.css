@@ -294,7 +294,7 @@
     border-radius: 10px;
 }
 
-.userAttestations{
+.userAttestations {
     height: 80px;
     position: relative;
     width: 100%;
@@ -303,7 +303,7 @@
     align-items: center;
 }
 
-.userAttestations::after{
+.userAttestations::after {
     content: '';
     position: absolute;
     bottom: 0;
@@ -314,15 +314,15 @@
     border-radius: 10px;
 }
 
-.userAttestations p{
-    font-size: clamp(14px,3vw,16px);
+.userAttestations p {
+    font-size: clamp(14px, 3vw, 16px);
     color: #FFFFFF;
     font-family: 'Microsport Bold';
     font-weight: bold;
     letter-spacing: 1px;
 }
 
-.userAttestations button{
+.userAttestations button {
     background: none;
     border: none;
     outline: none;
@@ -331,19 +331,19 @@
     font-family: "Inter";
     font-weight: 500;
     transition: all 0.3s ease-in;
-    font-size: clamp(12px,3vw,14px);
+    font-size: clamp(12px, 3vw, 14px);
 }
 
-.userAttestations button:hover{
+.userAttestations button:hover {
     filter: brightness(0.8);
 }
 
-.userAssBtns{
+.userAssBtns {
     display: flex;
     gap: 30px;
 }
 
-.userAssBtns :nth-child(2){
+.userAssBtns :nth-child(2) {
     color: rgb(211, 94, 94);
 }
 

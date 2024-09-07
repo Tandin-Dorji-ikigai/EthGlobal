@@ -37,15 +37,23 @@ const Navbar = () => {
         };
         checkConnectedWallet();
 
+        const handleAccountsChanged = (accounts) => {
+            if (accounts.length > 0) {
+                setWalletAddress(accounts[0]);
+            } else {
+                setWalletAddress(null);
+            }
+        };
+
         if (window.ethereum) {
-            window.ethereum.on("accountsChanged", (accounts) => {
-                if (accounts.length > 0) {
-                    setWalletAddress(accounts[0]);
-                } else {
-                    setWalletAddress(null);
-                }
-            });
+            window.ethereum.on("accountsChanged", handleAccountsChanged);
         }
+
+        return () => {
+            if (window.ethereum) {
+                window.ethereum.removeListener("accountsChanged", handleAccountsChanged);
+            }
+        };
     }, []);
 
     const Attestation = () => {
@@ -53,7 +61,7 @@ const Navbar = () => {
     };
 
     const connectWallet = async () => {
-        setLoading(true); // Show loader
+        setLoading(true); 
         if (window.ethereum) {
             try {
                 const permissions = await window.ethereum.request({
@@ -70,7 +78,7 @@ const Navbar = () => {
             } catch (error) {
                 console.error("MetaMask connection failed:", error);
             } finally {
-                setLoading(false); // Hide loader
+                setLoading(false);
             }
         } else {
             alert("MetaMask not detected. Please install MetaMask!");
@@ -79,11 +87,11 @@ const Navbar = () => {
     };
 
     const disconnectWallet = async () => {
-        setLoading(true); // Show loader
+        setLoading(true); 
         setWalletAddress(null);
         console.log("Wallet disconnected.");
         alert("You can switch your wallet by selecting a different account in MetaMask.");
-        setLoading(false); // Hide loader
+        setLoading(false); 
     };
 
     return (
@@ -97,8 +105,14 @@ const Navbar = () => {
 
                     <div className={`nav__menu ${showMenu ? "show-menu" : ""}`} id="nav-menu">
                         <ul className="nav__list">
+                            <li className="nav__item">
+                                <NavLink to="/" className="nav__link" onClick={closeMenuOnMobile}>
+                                    Home
+                                </NavLink>
+                            </li>
                             {walletAddress && walletAddress.toLowerCase() === "0xaa4cd3b7706b1be52e44d115d4683b49542abf69" && (
                                 <>
+
                                     <li className="nav__item">
                                         <NavLink to="/attestations" className="nav__link" onClick={closeMenuOnMobile}>
                                             User Attestations
@@ -111,17 +125,14 @@ const Navbar = () => {
                                     </li>
                                 </>
                             )}
+
                             <li className="nav__item">
                                 <NavLink to="/voting" className="nav__link" onClick={closeMenuOnMobile}>
                                     Voting Polls
                                 </NavLink>
                             </li>
 
-                            <li className="nav__item">
-                                <NavLink to="/login" className="nav__link" onClick={closeMenuOnMobile}>
-                                    <img src={MetaImg} alt="MetaMask" />
-                                </NavLink>
-                            </li>
+
                             <li className="nav__item nav-btn-container">
                                 {walletAddress ? (
                                     <>
@@ -133,9 +144,11 @@ const Navbar = () => {
                                         </button>
                                     </>
                                 ) : (
-                                    <button className="nav__link nav__cta" onClick={connectWallet}>
-                                        Connect Wallet
+                                    <button className="nav__ctaa" onClick={connectWallet}>
+                                        <img src={MetaImg} alt="MetaMask Logo" className="meta-img" />
+                                        Connect MetaMask
                                     </button>
+
                                 )}
                             </li>
                         </ul>
