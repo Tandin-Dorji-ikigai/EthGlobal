@@ -8,6 +8,7 @@ import Voting from "./Pages/Voting";
 import Login from "./Pages/Login";
 import Register from "./Pages/Register";
 import Navbar from "./Component/Navbar";
+import Footer from "./Component/Footer";
 import Voting2 from "./Pages/Voting2";
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
           <Route path="/register" element={<Register />} />
         </Routes>
       </main>
+      <Footer />
     </Router>
   );
 }

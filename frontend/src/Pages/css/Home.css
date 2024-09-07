@@ -19,7 +19,6 @@
 .feature-topic {
     font-size: clamp(28px, 3vw, 32px);
     color: #EACCFF;
-    font-family: 'Microsport Bold';
     font-weight: bolder;
 }
 

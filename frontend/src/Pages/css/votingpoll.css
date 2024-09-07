@@ -1,0 +1,104 @@
+.voting-poll-content {
+    background: #042435;
+}
+
+.voting-poll-container {
+    width: 90%;
+    margin: 0 auto;
+    padding-top: 150px;
+    color: #FFFFFF;
+    font-size: clamp(14px, 3vw, 16px);
+    font-family: 'Inter';
+    font-weight: 500;
+}
+
+.voting-title {
+    color: #EACCFF;
+    font-size: clamp(14px, 3vw, 16px);
+    font-family: 'Microsport Bold';
+    font-weight: bolder;
+    margin-bottom: 13px;
+}
+
+.accord-btn-container {
+    display: flex;
+    column-gap: 20px;
+    margin-top: 50px;
+}
+
+.arr-btn {
+    background: rgba(105, 105, 105, 0.4);
+    border: 1px solid rgba(153, 153, 153, 0.4);
+    border-radius: 50px;
+    width: 105px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    transition: background-color 0.3s, color 0.3s;
+    font-size: clamp(14px, 3vw, 16px);
+    font-family: 'Inter';
+
+}
+
+.arr-btn:hover {
+    filter: brightness(90%);
+    cursor: pointer;
+}
+
+.arr-btn.active {
+    background: #BD89EE;
+    color: white;
+}
+
+.election-poll-container {
+    margin-top: 40px;
+}
+
+.election-poll-container>:nth-child(odd) {
+    background: linear-gradient(to right, #000912 5%, #001929 50%, #001F30 100%);
+
+}
+
+.poll-card-container {
+    background: linear-gradient(to right, #001F30 5%, #001929 50%, #000912 100%);
+}
+
+.poll-card {
+    width: 90%;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.poll-title {
+    font-size: clamp(14px, 3vw, 16px);
+    font-family: 'Microsport Bold';
+    font-weight: bolder;
+    color: #EACCFF;
+}
+
+.poll-name {
+    font-size: clamp(18px, 3vw, 48px);
+    font-family: 'Microsport Bold';
+    font-weight: bolder;
+    color: #FFFFFF;
+}
+
+.view-more-btn {
+    background: transparent;
+    color: #C167FF;
+    font-size: 16px;
+    border: none;
+    width: fit-content;
+    height: fit-content;
+}
+
+.view-more-btn:hover {
+    cursor: pointer;
+    filter: brightness(90%);
+}
