@@ -28,7 +28,7 @@ const Navbar = () => {
                     <div className={`nav__menu ${showMenu ? "show-menu" : ""}`} id="nav-menu">
                         <ul className="nav__list">
                             <li className="nav__item">
-                                <NavLink to="/news" className="nav__link" onClick={closeMenuOnMobile}>
+                                <NavLink to="/about" className="nav__link" onClick={closeMenuOnMobile}>
                                     About Us
                                 </NavLink>
                             </li>
@@ -38,17 +38,17 @@ const Navbar = () => {
                                 </NavLink>
                             </li>
                             <li className="nav__item">
-                                <NavLink to="/favorite" className="nav__link" onClick={closeMenuOnMobile}>
+                                <NavLink to="/contact" className="nav__link" onClick={closeMenuOnMobile}>
                                     Contact Us
                                 </NavLink>
                             </li>
                             <li className="nav__item">
-                                <NavLink to="/location" className="nav__link" onClick={closeMenuOnMobile}>
+                                <NavLink to="/login" className="nav__link" onClick={closeMenuOnMobile}>
                                     Login
                                 </NavLink>
                             </li>
                             <li className="nav__item">
-                                <NavLink to="/get-started" className="nav__link nav__cta">
+                                <NavLink to="/register" className="nav__link nav__cta">
                                     Register
                                 </NavLink>
                             </li>
