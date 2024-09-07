@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import { IoClose, IoMenu } from "react-icons/io5";
 import "./Navbar.css";
 import Logo from "../Assets/logo.png"
-
+import MetaImg from "../Assets/metamask.png"
 const Navbar = () => {
     const [showMenu, setShowMenu] = useState(false);
 
@@ -27,24 +27,16 @@ const Navbar = () => {
 
                     <div className={`nav__menu ${showMenu ? "show-menu" : ""}`} id="nav-menu">
                         <ul className="nav__list">
-                            <li className="nav__item">
-                                <NavLink to="/about" className="nav__link" onClick={closeMenuOnMobile}>
-                                    About Us
-                                </NavLink>
-                            </li>
+                            
                             <li className="nav__item">
                                 <NavLink to="/voting" className="nav__link" onClick={closeMenuOnMobile}>
                                     Voting Polls
                                 </NavLink>
                             </li>
-                            <li className="nav__item">
-                                <NavLink to="/contact" className="nav__link" onClick={closeMenuOnMobile}>
-                                    Contact Us
-                                </NavLink>
-                            </li>
+                           
                             <li className="nav__item">
                                 <NavLink to="/login" className="nav__link" onClick={closeMenuOnMobile}>
-                                    Login
+                                   <img src={MetaImg} alt="" />
                                 </NavLink>
                             </li>
                             <li className="nav__item">
