@@ -16,8 +16,8 @@ const getCookie = (name) => {
 const Navbar = () => {
     const [showMenu, setShowMenu] = useState(false);
     const [walletAddress, setWalletAddress] = useState(null);
-    const [loading, setLoading] = useState(false); 
-    const [cookieAddr, setCookieAddr] = useState(null); 
+    const [loading, setLoading] = useState(false);
+    const [cookieAddr, setCookieAddr] = useState(null);
 
     const toggleMenu = () => {
         setShowMenu(!showMenu);
@@ -122,7 +122,7 @@ const Navbar = () => {
 
     return (
         <>
-            {loading && <Loader />} 
+            {loading && <Loader />}
             <header className="header">
                 <nav className="nav container">
                     <NavLink to="/" className="nav__logo">
@@ -136,7 +136,7 @@ const Navbar = () => {
                                     Home
                                 </NavLink>
                             </li>
-                            {walletAddress && walletAddress.toLowerCase() === "0xaa4cd3b7706b1be52e44d115d4683b49542abf69" && (
+                            {cookieAddr && walletAddress && walletAddress.toLowerCase() === "0xaa4cd3b7706b1be52e44d115d4683b49542abf69" && (
                                 <>
                                     <li className="nav__item">
                                         <NavLink to="/userAttestations" className="nav__link" onClick={closeMenuOnMobile}>
