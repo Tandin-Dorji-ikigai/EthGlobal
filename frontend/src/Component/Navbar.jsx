@@ -33,7 +33,7 @@ const Navbar = () => {
                                 </NavLink>
                             </li>
                             <li className="nav__item">
-                                <NavLink to="/about-us" className="nav__link" onClick={closeMenuOnMobile}>
+                                <NavLink to="/voting" className="nav__link" onClick={closeMenuOnMobile}>
                                     Voting Polls
                                 </NavLink>
                             </li>
