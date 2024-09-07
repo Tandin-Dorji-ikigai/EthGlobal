@@ -1,0 +1,27 @@
+.footer-container {
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to bottom, #042435, #4A2663);
+    flex-direction: column;
+    row-gap: 20px;
+}
+
+.footer-social-container {
+    display: flex;
+    column-gap: 15px;
+}
+
+.hr-line {
+    margin-top: 30px;
+    height: 2px;
+    width: 80%;
+    background: linear-gradient(to right, #3F255C 0%, #6C4E88 50%, #3F255C 100%);
+}
+
+.copy-text {
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+}
