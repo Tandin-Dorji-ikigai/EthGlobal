@@ -1,4 +1,4 @@
-export const VOTEXCHAIN_ADDRESS = "0x0165878a594ca255338adfa4d48449f69242eb8f"
+export const VOTEXCHAIN_ADDRESS = "0x5fbdb2315678afecb367f032d93f642f64180aa3"
 export const VOTEXCHAIN_ABI = [
     {
         "inputs": [],

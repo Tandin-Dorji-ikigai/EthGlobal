@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Axios from "axios";
+import Loader from "../Component/Loader";
 import "./css/votingpoll.css";
 
 function Attestations(props) {
@@ -133,13 +134,15 @@ function Attestations(props) {
           "An unexpected error occurred! Check console for more information"
         );
         console.log(error);
+      } finally {
+        setLoading(false);
       }
     }
   };
 
   return (
     <div className="voting-poll-content">
-      {loading && console.log("Loading")}
+      {loading && <Loader />}
       <div className="voting-poll-container">
         <div className="voting-title">Create Poll</div>
         <div>

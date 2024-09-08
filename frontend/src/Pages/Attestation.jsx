@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
+import Loader from "../Component/Loader";
 import {
   SignProtocolClient,
   SpMode,
@@ -71,6 +72,7 @@ function Attestations() {
     e.preventDefault();
     if (validateForm()) {
       try {
+        setLoading(true);
         const attestationInfo = await client.createAttestation({
           schemaId: "SPS_J_bYOcsgqy8b_rsstO2TC",
           data: {
@@ -96,13 +98,15 @@ function Attestations() {
       } catch (error) {
         alert("Error creating attestation. Check your console and try again");
         console.log(error);
+      } finally {
+        setLoading(false);
       }
     }
   };
 
   return (
     <div className="voting-poll-content">
-      {loading && console.log("loading")}
+      {loading && <Loader />}
       <div className="voting-poll-container">
         <div className="voting-title">Create Attestations</div>
         <div>

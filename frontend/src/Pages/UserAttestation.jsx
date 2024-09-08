@@ -8,6 +8,7 @@ import {
 } from "@ethsign/sp-sdk";
 import { privateKeyToAccount } from "viem/accounts";
 import { X } from "lucide-react";
+import Loader from "../Component/Loader";
 import "./css/votingpoll.css";
 
 const privKey =
@@ -43,7 +44,7 @@ const AttestationPopup = ({ attestation, onClose }) => {
 
   return (
     <div className="attestation-popup-overlay">
-      {loading && console.log("Attestation loading...")}
+      {loading && <Loader />}
       {attestationDetails && (
         <div className="attestation-popup">
           <button className="close-button" onClick={onClose}>
@@ -82,11 +83,14 @@ const AttestationPopup = ({ attestation, onClose }) => {
 function UserAttestations() {
   const [attestations, setAttestations] = useState([]);
   const [selectedAttestation, setSelectedAttestation] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     async function getAttestations() {
+      setLoading(true);
       const usersRes = await Axios.get("http://localhost:4001/api/users");
       setAttestations(usersRes.data.data);
+      setLoading(false);
     }
     getAttestations();
   }, []);
@@ -97,6 +101,7 @@ function UserAttestations() {
 
   const handleRevokeAttestation = async (attestation) => {
     try {
+      setLoading(true);
       const revokeAttestationRes = await client.revokeAttestation(
         attestation.attestation_id,
         {
@@ -113,6 +118,8 @@ function UserAttestations() {
     } catch (error) {
       alert("Unexpected error occured! Check console for more details");
       console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -122,6 +129,7 @@ function UserAttestations() {
 
   return (
     <div className="voting-poll-content">
+      {loading && <Loader />}
       <div className="voting-poll-container">
         <div className="voting-title">User Attestations</div>
         <div>
