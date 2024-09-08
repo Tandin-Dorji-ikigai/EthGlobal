@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import "./css/Voting.css";
 import Axios from "axios";
+import Swal from "sweetalert2"; 
 
 function Voting2(props) {
   const [election, setElection] = useState();
   const [isAdmin, setIsAdmin] = useState(false);
   const [candidates, setCandidates] = useState([]);
-  const [voteCounts, setVoteCounts] = useState([]); // State to store vote counts
+  const [voteCounts, setVoteCounts] = useState([]);
 
   const getCookie = (name) => {
     const value = `; ${document.cookie}`;
@@ -21,7 +22,7 @@ function Voting2(props) {
         method: "eth_requestAccounts",
       });
       const selectedAccount = accounts[0];
-      if (selectedAccount === "0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266") {
+      if (selectedAccount === "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266".toLowerCase()) {
         setIsAdmin(true);
       }
       const res = await props.contract.methods
@@ -87,9 +88,7 @@ function Voting2(props) {
           user.walletAddress.toLowerCase() === selectedAccount.toLowerCase()
       );
       if (attestationExists === undefined) {
-        return alert(
-          "You must create an attestation to be eligible for casting votes"
-        );
+        return Swal.fire("Error", "You must create an attestation to be eligible for casting votes", "error");
       }
 
       const pollId = getCookie("pollId");
@@ -103,21 +102,21 @@ function Voting2(props) {
       const currTime = new Date(Date.now());
       const currTimestamp = Math.floor(currTime.getTime() / 1000);
       if (Number(electionDetails[2]) >= currTimestamp) {
-        return alert("The poll has not started yet so you cannot vote.");
+        return Swal.fire("Error", "The poll has not started yet so you cannot vote.", "warning");
       }
       if (hasVoted) {
-        return alert("You have already voted!");
+        return Swal.fire("Error", "You have already voted!", "warning");
       }
       const receipt = await props.contract.methods
         .vote(pollId, addr)
         .send({ from: selectedAccount });
       console.log(receipt);
-      alert("Voted Successfully");
+      Swal.fire("Success", "Voted Successfully", "success");
     } catch (error) {
       if (error.name === "ContractExecutionError") {
-        return alert("Smart Contract conditions do not meet!");
+        return Swal.fire("Error", "Smart Contract conditions do not meet!", "error");
       }
-      alert("An error occurred! Check your console for more details");
+      Swal.fire("Error", "An error occurred! Check your console for more details", "error");
       console.log(error);
     }
   };
@@ -132,8 +131,13 @@ function Voting2(props) {
       .endElection(pollId)
       .send({ from: selectedAccount });
     console.log(receipt);
-    alert("Election Closed Successfully");
-    window.location.reload(true);
+    Swal.fire({
+      title: "Success",
+      text: "Election Closed Successfully",
+      icon: "success",
+    }).then(() => {
+      window.location.reload(true);
+    });
   };
 
   return (

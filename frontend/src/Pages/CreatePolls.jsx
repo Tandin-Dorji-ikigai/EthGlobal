@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Axios from "axios";
 import Loader from "../Component/Loader";
+import Swal from "sweetalert2"; // Import SweetAlert
 import "./css/votingpoll.css";
 
 function Attestations(props) {
@@ -92,7 +93,6 @@ function Attestations(props) {
       try {
         let photos = [];
         for (let i = 0; i < candidatePhotos.length; i++) {
-          //   console.log(candidatePhotos[i]);
           const res = await Axios({
             method: "POST",
             url: "http://localhost:4001/api/photos",
@@ -105,16 +105,7 @@ function Attestations(props) {
           });
           photos.push(res.data.data._id);
         }
-        //   console.log(
-        //     formData.name,
-        //     formData.description,
-        //     candidateNames,
-        //     candidateWalletAddresses,
-        //     startTimestamp,
-        //     endTimestamp,
-        //     // photos,
-        //     selectedAccount
-        //   );
+
         let res = await props.createElection(
           formData.name,
           formData.description,
@@ -126,20 +117,26 @@ function Attestations(props) {
           selectedAccount
         );
         if (res === true) {
-          alert("Election Created Successfully!");
-          navigate("/voting");
+          Swal.fire({
+            title: "Success!",
+            text: "Election Created Successfully!",
+            icon: "success",
+          }).then(() => {
+            navigate("/voting");
+          });
         }
       } catch (error) {
-        alert(
-          "An unexpected error occurred! Check console for more information"
-        );
+        Swal.fire({
+          title: "Error",
+          text: "An unexpected error occurred! Check console for more information",
+          icon: "error",
+        });
         console.log(error);
       } finally {
         setLoading(false);
       }
     }
   };
-
   return (
     <div className="voting-poll-content">
       {loading && <Loader />}

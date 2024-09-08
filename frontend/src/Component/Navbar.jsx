@@ -5,6 +5,7 @@ import Logo from "../Assets/logo.png";
 import MetaImg from "../Assets/metamask.png";
 import { IoClose, IoMenu } from "react-icons/io5";
 import Loader from "./Loader";
+import Swal from "sweetalert2";
 
 const getCookie = (name) => {
   const value = `; ${document.cookie}`;
@@ -37,7 +38,6 @@ const Navbar = () => {
     }
   };
 
-  // Check if wallet is already connected when component mounts
   useEffect(() => {
     GetCookieData(); // Initialize state with cookie data
 
@@ -64,9 +64,8 @@ const Navbar = () => {
     const handleAccountsChanged = (accounts) => {
       if (accounts.length > 0) {
         setWalletAddress(accounts[0]);
-        document.cookie = `walletAddress=${accounts[0]}; path=/; max-age=${
-          60 * 60 * 24 * 30
-        }`; // Set cookie
+        document.cookie = `walletAddress=${accounts[0]}; path=/; max-age=${60 * 60 * 24 * 30
+          }`; // Set cookie
       } else {
         setWalletAddress(null);
         document.cookie = "walletAddress=; path=/; max-age=0"; // Clear cookie
@@ -87,10 +86,6 @@ const Navbar = () => {
     };
   }, [cookieAddr]);
 
-  // const Attestation = () => {
-  //   window.location.href = "/attestations";
-  // };
-
   const connectWallet = async () => {
     setLoading(true);
     if (window.ethereum) {
@@ -106,18 +101,26 @@ const Navbar = () => {
           });
           const address = accounts[0];
           setWalletAddress(address);
-          document.cookie = `walletAddress=${address}; path=/; max-age=${
-            60 * 60 * 24 * 30
-          }`;
+          document.cookie = `walletAddress=${address}; path=/; max-age=${60 * 60 * 24 * 30
+            }`;
           window.location.reload();
         }
       } catch (error) {
+        Swal.fire({
+          icon: "error",
+          title: "MetaMask Error",
+          text: "MetaMask connection failed. Please check your MetaMask extension.",
+        });
         console.error("MetaMask connection failed:", error);
       } finally {
         setLoading(false);
       }
     } else {
-      alert("MetaMask not detected. Please install MetaMask!");
+      Swal.fire({
+        icon: "warning",
+        title: "MetaMask Not Found",
+        text: "MetaMask not detected. Please install MetaMask!",
+      });
       setLoading(false);
     }
   };
@@ -125,9 +128,13 @@ const Navbar = () => {
   const disconnectWallet = async () => {
     setLoading(true);
     setWalletAddress(null);
-    alert(
-      "You can switch your wallet by selecting a different account in MetaMask."
-    );
+
+    Swal.fire({
+      icon: "info",
+      title: "Wallet Disconnected",
+      text: "You can switch your wallet by selecting a different account in MetaMask.",
+    });
+
     document.cookie = "walletAddress=; path=/; max-age=0"; // Clear the cookie
     setLoading(false);
     window.location.reload();
@@ -159,7 +166,7 @@ const Navbar = () => {
               {cookieAddr &&
                 walletAddress &&
                 walletAddress.toLowerCase() ===
-                  "0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266" && (
+                "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266".toLowerCase() && (
                   <>
                     <li className="nav__item">
                       <NavLink
@@ -202,7 +209,7 @@ const Navbar = () => {
                     </button> */}
                     {walletAddress &&
                       walletAddress.toLowerCase() !==
-                        "0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266" && (
+                      "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266" && (
                         <NavLink
                           to="/attestations"
                           className="nav__link nav__cta"

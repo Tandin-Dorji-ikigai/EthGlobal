@@ -21,7 +21,6 @@ function App() {
     try {
       const receipt = await contract.methods.createElection(name, description, startTime, endTime, candidateAddresses, candidateNames, candidatePhotos).send({ from: caller });
       console.log(receipt);
-      alert("Election Creation Successful");
       return true;
     } catch (error) {
       alert("An error occurred! Check your console for more details");

@@ -14,9 +14,7 @@ function Home() {
           <p className="main-text">Redefining Voting with blockhain security</p>
           <p className="sub-text">From identity verification to final tallying, experience transparent elections powered by the latest in decentralized technology.</p>
 
-          <Link to="/register" className="nav__link nav__cta cta-banner">
-            Register
-          </Link>
+  
         </div>
       </div>
       <div className="features-wrapper">

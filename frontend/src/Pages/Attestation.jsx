@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
 import Loader from "../Component/Loader";
+import Swal from "sweetalert2"; // Import SweetAlert2
 import {
   SignProtocolClient,
   SpMode,
@@ -13,6 +14,7 @@ const client = new SignProtocolClient(SpMode.OffChain, {
   signType: OffChainSignType.EvmEip712,
   chain: EvmChains.baseSepolia,
 });
+
 function Attestations() {
   const [loading, setLoading] = useState(false);
   const [account, setSelectedAcc] = useState("");
@@ -36,7 +38,6 @@ function Attestations() {
       setSelectedAcc(selectedAccount);
       const res = await Axios.get("http://localhost:4001/api/users");
       const attestation = res.data.data;
-      // Check if any user has the same wallet address as the selected account
       const attestationExists = attestation.find(
         (user) =>
           user.walletAddress.toLowerCase() === selectedAccount.toLowerCase()
@@ -80,9 +81,9 @@ function Attestations() {
             CID: formData.cid,
             Address: formData.address,
             "Date of Birth": formData.dob,
-            Signer: account, // signer address
+            Signer: account,
           },
-          indexingValue: account.toLowerCase(), // indexingValue: signer.toLowerCase()
+          indexingValue: account.toLowerCase(),
         });
         const res = await Axios({
           url: "http://localhost:4001/api/users",
@@ -93,10 +94,21 @@ function Attestations() {
           },
         });
         console.log("Attestation created: ", res.data.data);
-        alert("Attestation created successfully!");
+
+        // Replace alert with SweetAlert
+        Swal.fire({
+          icon: "success",
+          title: "Success!",
+          text: "Attestation created successfully!",
+        });
+
         setExists(true);
       } catch (error) {
-        alert("Error creating attestation. Check your console and try again");
+        Swal.fire({
+          icon: "error",
+          title: "Error",
+          text: "Error creating attestation. Check your console and try again.",
+        });
         console.log(error);
       } finally {
         setLoading(false);
