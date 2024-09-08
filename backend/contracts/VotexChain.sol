@@ -153,6 +153,30 @@ contract VotexChain {
         return elections[electionId].endTime > block.timestamp;
     }
 
+    function getElectionDetails(
+        uint256 electionId
+    )
+        public
+        view
+        returns (
+            string memory,
+            string memory,
+            uint256,
+            uint256,
+            bool,
+            address[] memory
+        )
+    {
+        return (
+            elections[electionId].name,
+            elections[electionId].description,
+            elections[electionId].startTime,
+            elections[electionId].endTime,
+            elections[electionId].active,
+            elections[electionId].candidate_addresses
+        );
+    }
+
     function getVotes(
         uint256 electionId,
         address candidate
@@ -172,5 +196,13 @@ contract VotexChain {
         address candidate
     ) public view returns (string memory) {
         return candidatesInfo[candidate].name;
+    }
+
+    function getHasVoted(
+        address voter,
+        uint256 electionId
+    ) public view returns (bool) {
+        bytes32 voteHash = keccak256(abi.encodePacked(voter, electionId));
+        return elections[electionId].hasVoted[voteHash];
     }
 }

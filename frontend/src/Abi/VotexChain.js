@@ -110,7 +110,7 @@ export const VOTEXCHAIN_ABI = [
             },
             {
                 "internalType": "string",
-                "name": "photoURL",
+                "name": "photo",
                 "type": "string"
             }
         ],
@@ -194,7 +194,7 @@ export const VOTEXCHAIN_ABI = [
             },
             {
                 "internalType": "string[]",
-                "name": "_photoURLs",
+                "name": "_photos",
                 "type": "string[]"
             }
         ],
@@ -301,6 +301,50 @@ export const VOTEXCHAIN_ABI = [
                 "internalType": "string",
                 "name": "",
                 "type": "string"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "electionId",
+                "type": "uint256"
+            }
+        ],
+        "name": "getElectionDetails",
+        "outputs": [
+            {
+                "internalType": "string",
+                "name": "",
+                "type": "string"
+            },
+            {
+                "internalType": "string",
+                "name": "",
+                "type": "string"
+            },
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            },
+            {
+                "internalType": "bool",
+                "name": "",
+                "type": "bool"
+            },
+            {
+                "internalType": "address[]",
+                "name": "",
+                "type": "address[]"
             }
         ],
         "stateMutability": "view",

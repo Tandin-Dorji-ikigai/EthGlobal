@@ -87,9 +87,9 @@ const Navbar = () => {
     };
   }, [cookieAddr]);
 
-  const Attestation = () => {
-    window.location.href = "/attestations";
-  };
+  // const Attestation = () => {
+  //   window.location.href = "/attestations";
+  // };
 
   const connectWallet = async () => {
     setLoading(true);
@@ -159,7 +159,7 @@ const Navbar = () => {
               {cookieAddr &&
                 walletAddress &&
                 walletAddress.toLowerCase() ===
-                  "0xaa4cd3b7706b1be52e44d115d4683b49542abf69" && (
+                  "0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266" && (
                   <>
                     <li className="nav__item">
                       <NavLink
@@ -194,12 +194,23 @@ const Navbar = () => {
               <li className="nav__item nav-btn-container">
                 {cookieAddr ? (
                   <>
-                    <button
+                    {/* <button
                       className="nav__link nav__cta"
                       onClick={Attestation}
                     >
                       Attestation
-                    </button>
+                    </button> */}
+                    {walletAddress &&
+                      walletAddress.toLowerCase() !==
+                        "0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266" && (
+                        <NavLink
+                          to="/attestations"
+                          className="nav__link nav__cta"
+                          onClick={closeMenuOnMobile}
+                        >
+                          Attestation
+                        </NavLink>
+                      )}
                     <button
                       className="nav__link nav__cta"
                       onClick={disconnectWallet}

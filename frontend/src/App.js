@@ -40,7 +40,7 @@ function App() {
         const electionArray = [];
 
         for (let i = 1; i <= electionCount; i++) {
-          const tx = await votexchain.methods.transactions(i).call();
+          const tx = await votexchain.methods.elections(i).call();
           electionArray.push(tx);
         }
 
@@ -63,7 +63,7 @@ function App() {
           <Route path="/attestations" element={<Attestations />} />
           <Route path="/createPolls" element={<CreatePolls createElection={createElection} />} />
           <Route path="/voting" element={<Voting elections={elections} />} />
-          <Route path="/voting2" element={<Voting2 />} />
+          <Route path="/voting2" element={<Voting2 contract={contract} />} />
           <Route path="/userAttestations" element={<UserAttestations />} />
         </Routes>
       </main>

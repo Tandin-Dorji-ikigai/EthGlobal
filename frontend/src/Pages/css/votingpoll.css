@@ -1,429 +1,430 @@
 .voting-poll-content {
-    background: #042435;
+  background: #042435;
 }
 
 .voting-poll-container {
-    width: 90%;
-    margin: 0 auto;
-    padding-top: 150px;
-    color: #FFFFFF;
-    font-size: clamp(14px, 3vw, 16px);
-    font-family: 'Inter';
-    font-weight: 500;
+  width: 90%;
+  margin: 0 auto;
+  padding-top: 150px;
+  color: #ffffff;
+  font-size: clamp(14px, 3vw, 16px);
+  font-family: "Inter";
+  font-weight: 500;
 }
 
 .voting-title {
-    color: #EACCFF;
-    font-size: clamp(28px, 3vw, 32px);
-    font-family: 'Microsport Bold';
-    font-weight: bolder;
-    margin-bottom: 13px;
+  color: #eaccff;
+  font-size: clamp(28px, 3vw, 32px);
+  font-family: "Microsport Bold";
+  font-weight: bolder;
+  margin-bottom: 13px;
 }
 
 .accord-btn-container {
-    display: flex;
-    column-gap: 20px;
-    margin-top: 50px;
+  display: flex;
+  column-gap: 20px;
+  margin-top: 50px;
 }
 
 .arr-btn {
-    background: rgba(105, 105, 105, 0.4);
-    border: 1px solid rgba(153, 153, 153, 0.4);
-    border-radius: 50px;
-    width: 105px;
-    height: 38px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    transition: background-color 0.3s, color 0.3s;
-    font-size: clamp(14px, 3vw, 16px);
-    font-family: 'Inter';
-
+  background: rgba(105, 105, 105, 0.4);
+  border: 1px solid rgba(153, 153, 153, 0.4);
+  border-radius: 50px;
+  width: 105px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  transition: background-color 0.3s, color 0.3s;
+  font-size: clamp(14px, 3vw, 16px);
+  font-family: "Inter";
 }
 
 .arr-btn:hover {
-    filter: brightness(90%);
-    cursor: pointer;
+  filter: brightness(90%);
+  cursor: pointer;
 }
 
 .arr-btn.active {
-    background: #BD89EE;
-    color: white;
+  background: #bd89ee;
+  color: white;
 }
 
 .election-poll-container {
-    margin-top: 40px;
+  margin-top: 40px;
 }
 
-.election-poll-container>:nth-child(odd) {
-    background: linear-gradient(to right, #000912 5%, #001929 50%, #001F30 100%);
-
+.election-poll-container > :nth-child(odd) {
+  background: linear-gradient(to right, #000912 5%, #001929 50%, #001f30 100%);
 }
 
 .poll-card-container {
-    background: linear-gradient(to right, #001F30 5%, #001929 50%, #000912 100%);
+  background: linear-gradient(to right, #001f30 5%, #001929 50%, #000912 100%);
 }
 
 .poll-card {
-    width: 90%;
-    height: 200px;
-    display: flex;
-    flex-direction: column;
-    row-gap: 15px;
-    justify-content: center;
-    margin: 0 auto;
+  width: 90%;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 15px;
+  justify-content: center;
+  margin: 0 auto;
 }
 
 .poll-title {
-    font-size: clamp(14px, 3vw, 16px);
-    font-family: 'Microsport Bold';
-    font-weight: bolder;
-    color: #EACCFF;
+  font-size: clamp(14px, 3vw, 16px);
+  font-family: "Microsport Bold";
+  font-weight: bolder;
+  color: #eaccff;
 }
 
 .poll-name {
-    font-size: clamp(18px, 3vw, 48px);
-    font-family: 'Microsport Bold';
-    font-weight: bolder;
-    color: #FFFFFF;
+  font-size: clamp(18px, 3vw, 48px);
+  font-family: "Microsport Bold";
+  font-weight: bolder;
+  color: #ffffff;
 }
 
 .view-more-btn {
-    background: transparent;
-    color: #C167FF;
-    font-size: 16px;
-    border: none;
-    width: fit-content;
-    height: fit-content;
+  background: transparent;
+  color: #c167ff;
+  font-size: 16px;
+  border: none;
+  width: fit-content;
+  height: fit-content;
 }
 
 .view-more-btn:hover {
-    cursor: pointer;
-    filter: brightness(90%);
+  cursor: pointer;
+  filter: brightness(90%);
 }
 
 /* Form  */
 
 .attestation-form-container {
-    margin-top: 30px;
-    padding: 20px 30px;
-    border: 1px solid #1C719E;
-    border-radius: 8px;
-    background: #0C3A53;
-    font-family: "inter";
+  margin-top: 30px;
+  padding: 20px 30px;
+  border: 1px solid #1c719e;
+  border-radius: 8px;
+  background: #0c3a53;
+  font-family: "inter";
 }
 
 .attestation-form-container h2 {
-    margin-bottom: 20px;
-    font-size: clamp(20px, 3vw, 24px);
-    font-family: 'Microsport Bold';
-    font-weight: bolder;
-    color: #EACCFF;
+  margin-bottom: 20px;
+  font-size: clamp(20px, 3vw, 24px);
+  font-family: "Microsport Bold";
+  font-weight: bolder;
+  color: #eaccff;
 }
 
 .attestation-form-row {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
 }
 
 .attestation-form-group {
-    flex: 1;
-    margin-top: 20px;
+  flex: 1;
+  margin-top: 20px;
 }
 
 .attestation-form-group:last-child {
-    margin-right: 0;
+  margin-right: 0;
 }
 
 .attestation-form-group label {
-    display: block;
-    font-size: 14px;
-    font-weight: bold;
-    margin-bottom: 5px;
-    color: #FFFFFF;
+  display: block;
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #ffffff;
 }
 
 .attestation-form-group input {
-    width: 90%;
-    padding: 10px;
-    border: 1px solid #e0e0e0;
-    border-radius: 4px;
-    font-size: 14px;
-    outline: none;
-    height: 40px;
+  width: 90%;
+  padding: 10px;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  font-size: 14px;
+  outline: none;
+  height: 40px;
 }
 
 .attestation-form-group .electionName {
-    width: 45%;
+  width: 45%;
 }
 
 .attestation-error {
-    color: rgb(220, 25, 25);
-    font-size: 12px;
-    margin-top: 5px;
-    display: block;
+  color: rgb(220, 25, 25);
+  font-size: 12px;
+  margin-top: 5px;
+  display: block;
 }
 
 .candidate-section {
-    margin-top: 30px;
+  margin-top: 30px;
 }
 
 .attestation-confirm-btn {
-    display: block;
-    width: 18%;
-    padding: 12px;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 20px;
-    transition: all 0.3s ease-in-out;
-    background: linear-gradient(90deg, #D4A6FF 0%, #9747E1 27%, #7122BB 77%);
+  display: block;
+  width: 18%;
+  padding: 12px;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 20px;
+  transition: all 0.3s ease-in-out;
+  background: linear-gradient(90deg, #d4a6ff 0%, #9747e1 27%, #7122bb 77%);
 }
 
 .attestation-candidate-add {
-    border: none;
-    font-size: 16px;
-    padding-left: 5px;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
-    background: none;
-    text-align: left;
-    margin-bottom: 50px;
-    color: #C167FF;
+  border: none;
+  font-size: 16px;
+  padding-left: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  background: none;
+  text-align: left;
+  margin-bottom: 50px;
+  color: #c167ff;
 }
 
 .attestation-candidate-remove {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 .attestation-candidate-add:hover {
-    filter: brightness(0.8);
+  filter: brightness(0.8);
 }
 
 .attestation-confirm-btn:hover {
-    filter: brightness(0.8);
+  filter: brightness(0.8);
 }
 
-
 .attestation-form-group textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #e0e0e0;
-    border-radius: 4px;
-    font-size: 14px;
-    resize: none;
+  width: 90%;
+  padding: 10px;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  font-size: 14px;
+  resize: none;
 }
 
 .attestation-form-group textarea:focus {
-    outline: none;
+  outline: none;
 }
 
 .attestation-form-row.image-upload {
-    width: 44%;
+  width: 44%;
 }
 
 .attestation-form-row.image-upload {
-    width: 44%;
+  width: 44%;
 }
 
 .attestation-form-group.image-upload {
-    border-radius: 5px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    position: relative;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
 }
 
 .attestation-form-group.image-upload label {
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
-    margin-bottom: 5px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  margin-bottom: 5px;
 }
 
 .attestation-form-group.image-upload input[type="file"] {
-    display: none;
+  display: none;
 }
 
 .custom-file-upload {
-    background-color: #007F7F;
-    color: white;
-    padding: 15px 10px;
-    border-radius: 5px;
-    text-align: center;
-    cursor: pointer;
-    width: 100%;
+  background-color: #007f7f;
+  color: white;
+  padding: 15px 10px;
+  border-radius: 5px;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
 }
 
 .attestation-error {
-    color: rgb(220, 25, 25);
-    font-size: 12px;
-    margin-top: 5px;
-    display: block;
+  color: rgb(220, 25, 25);
+  font-size: 12px;
+  margin-top: 5px;
+  display: block;
 }
 
 .can-main-top {
-    margin-top: 50px;
+  margin-top: 50px;
 }
 
 .candidate-count {
-    font-size: clamp(14px, 3vw, 16px) !important;
-    color: #FFFFFF !important;
-    margin-bottom: 0 !important;
+  font-size: clamp(14px, 3vw, 16px) !important;
+  color: #ffffff !important;
+  margin-bottom: 0 !important;
 }
 
 .userAttestations-wrapper {
-    width: 90%;
-    margin: 0 auto;
-    height: auto;
-    position: relative;
-    margin-top: 50px;
+  width: 90%;
+  margin: 0 auto;
+  height: auto;
+  position: relative;
+  margin-top: 50px;
 }
 
 .userAttestations-wrapper::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(90deg, #0C3A53 0%, #1C719E 52%, #0C3A53 100%);
-    border-radius: 10px;
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, #0c3a53 0%, #1c719e 52%, #0c3a53 100%);
+  border-radius: 10px;
 }
 
 .userAttestations {
-    height: 80px;
-    position: relative;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  height: 80px;
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .userAttestations::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(90deg, #0C3A53 0%, #1C719E 52%, #0C3A53 100%);
-    border-radius: 10px;
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, #0c3a53 0%, #1c719e 52%, #0c3a53 100%);
+  border-radius: 10px;
 }
 
 .userAttestations p {
-    font-size: clamp(14px, 3vw, 16px);
-    color: #FFFFFF;
-    font-family: 'Microsport Bold';
-    font-weight: bold;
-    letter-spacing: 1px;
+  font-size: clamp(14px, 3vw, 16px);
+  color: #ffffff;
+  font-family: "Microsport Bold";
+  font-weight: bold;
+  letter-spacing: 1px;
 }
 
 .userAttestations button {
-    background: none;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    color: #A0DEFF;
-    font-family: "Inter";
-    font-weight: 500;
-    transition: all 0.3s ease-in;
-    font-size: clamp(12px, 3vw, 14px);
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  color: #a0deff;
+  font-family: "Inter";
+  font-weight: 500;
+  transition: all 0.3s ease-in;
+  font-size: clamp(12px, 3vw, 14px);
 }
 
 .userAttestations button:hover {
-    filter: brightness(0.8);
+  filter: brightness(0.8);
 }
 
 .userAssBtns {
-    display: flex;
-    gap: 30px;
+  display: flex;
+  gap: 30px;
 }
 
 .userAssBtns :nth-child(2) {
-    color: rgb(211, 94, 94);
+  color: rgb(211, 94, 94);
 }
 
 /* Popup styles */
 .attestation-popup-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
 }
 
 .attestation-popup {
-    background: #0C3A53;
-    padding: 20px;
-    border-radius: 8px;
-    width: 100%;
-    max-width: 500px;
-    position: relative;
+  background: #0c3a53;
+  padding: 20px;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 800px;
+  position: relative;
 }
 
 .attestation-popup h2 {
-    color: #EACCFF;
-    font-size: 24px;
-    font-family: 'Microsport Bold';
-    margin: 0 auto;
-    margin-bottom: 15px;
-    text-align: center;
+  color: #eaccff;
+  font-size: 24px;
+  font-family: "Microsport Bold";
+  margin: 0 auto;
+  margin-bottom: 15px;
+  text-align: center;
 }
 
 .attestation-popup .attestation-id {
-    color: #FFFFFF;
-    font-size: 18px;
-    margin-bottom: 20px;
-    text-align: center;
-    font-family: 'Microsport Bold';
-    letter-spacing: 1px;
-    font-weight: bold;
+  color: #ffffff;
+  font-size: 18px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-family: "Microsport Bold";
+  letter-spacing: 1px;
+  font-weight: bold;
 }
 
 .attestation-popup .attestation-row {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 15px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
 }
 
 .attestation-popup .attestation-row p {
-    color: #FFFFFF;
-    font-size: 16px;
-    font-family: 'Inter';
+  color: #ffffff;
+  font-size: 16px;
+  font-family: "Inter";
 }
 
 .attestation-popup .attestation-column {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 50%;
-    margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+  margin-bottom: 20px;
 }
 
 .attestation-popup .attestation-column :nth-child(1) {
-    margin-bottom: 5px;
-    color: #A0DEFF;
+  margin-bottom: 5px;
+  color: #a0deff;
 }
 
 .attestation-popup .close-button {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: none;
-    border: none;
-    color: #FFFFFF;
-    cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
 }
 
 .attestation-popup .close-button:hover {
-    color: #A0DEFF;
+  color: #a0deff;
+}
+
+.white {
+  color: rgb(211, 211, 211);
 }

@@ -13,7 +13,7 @@ exports.getAllPhotos = async (req, res) => {
 exports.createPhoto = async (req, res) => {
     try {
         if (req.file) {
-            req.body.photo = req.file.path
+            req.body.photo = String(req.file.path);
         }
         const photo = await Photo.create(req.body);
         res.json({ data: photo, status: 'success' });
