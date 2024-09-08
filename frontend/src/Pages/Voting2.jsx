@@ -51,7 +51,6 @@ function Voting2(props) {
           .call({ from: selectedAccount });
         electionVoteCounts.push(voteCount); // Store the vote count
       }
-      console.log(electionVoteCounts);
       setCandidates(electionCandidates);
       setVoteCounts(electionVoteCounts); // Store vote counts in state
     }
@@ -94,19 +93,32 @@ function Voting2(props) {
       }
 
       const pollId = getCookie("pollId");
+      const electionDetails = await props.contract.methods
+        .getElectionDetails(pollId)
+        .call({ from: selectedAccount });
+      console.log(electionDetails);
+      const hasVoted = await props.contract.methods
+        .getHasVoted(selectedAccount, pollId)
+        .call({ from: selectedAccount });
+      const currTime = new Date(Date.now());
+      const currTimestamp = Math.floor(currTime.getTime() / 1000);
+      if (Number(electionDetails[2]) >= currTimestamp) {
+        return alert("The poll has not started yet so you cannot vote.");
+      }
+      if (hasVoted) {
+        return alert("You have already voted!");
+      }
       const receipt = await props.contract.methods
         .vote(pollId, addr)
         .send({ from: selectedAccount });
       console.log(receipt);
       alert("Voted Successfully");
-      return true;
     } catch (error) {
       if (error.name === "ContractExecutionError") {
         return alert("Smart Contract conditions do not meet!");
       }
       alert("An error occurred! Check your console for more details");
       console.log(error);
-      return false;
     }
   };
 

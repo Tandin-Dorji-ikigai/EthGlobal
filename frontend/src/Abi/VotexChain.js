@@ -1,4 +1,4 @@
-export const VOTEXCHAIN_ADDRESS = "0x9fe46736679d2d9a65f0992f2272de9f3c7fa6e0"
+export const VOTEXCHAIN_ADDRESS = "0x0165878a594ca255338adfa4d48449f69242eb8f"
 export const VOTEXCHAIN_ABI = [
     {
         "inputs": [],
@@ -345,6 +345,30 @@ export const VOTEXCHAIN_ABI = [
                 "internalType": "address[]",
                 "name": "",
                 "type": "address[]"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "voter",
+                "type": "address"
+            },
+            {
+                "internalType": "uint256",
+                "name": "electionId",
+                "type": "uint256"
+            }
+        ],
+        "name": "getHasVoted",
+        "outputs": [
+            {
+                "internalType": "bool",
+                "name": "",
+                "type": "bool"
             }
         ],
         "stateMutability": "view",
